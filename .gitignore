@@ -1,0 +1,20 @@
+node_modules/
+**/node_modules/
+dist/
+build/
+.env
+.env.*
+*.log
+
+# Local development / Claude generated tools
+_tools/
+
+# MVP video production files
+MVP Demonstartion/Raw/
+MVP Demonstartion/video_v2/captures/
+MVP Demonstartion/video_v2/compositions/
+
+# Large reference/demo videos
+MVP Demonstartion/Reference/*.mp4
+Animation References/*.mp4
+Homepage References/*.mp4

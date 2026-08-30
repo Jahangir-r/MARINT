@@ -1,0 +1,455 @@
+{
+  "data_type": "synthetic",
+  "source": "MARINT Demo Dataset",
+  "is_synthetic": true,
+  "generated_at": "2026-08-28T21:16:03.990Z",
+  "events": [
+    {
+      "id": "ev-014",
+      "vessel_id": "mv-005",
+      "related_vessel_id": null,
+      "kind": "departure",
+      "ts": "2026-08-26T06:14:05.262Z",
+      "title": "Departed Atyrau",
+      "description": "Buzachi departed Atyrau on AIS with no destination filed.",
+      "severity": null,
+      "data": {}
+    },
+    {
+      "id": "ev-008",
+      "vessel_id": "mv-002",
+      "related_vessel_id": null,
+      "kind": "departure",
+      "ts": "2026-08-27T08:00:00.000Z",
+      "title": "Departed Baku",
+      "description": "Kalmykia Trader departed Baku bound for Astrakhan.",
+      "severity": null,
+      "data": {}
+    },
+    {
+      "id": "ev-030",
+      "vessel_id": "mv-017",
+      "related_vessel_id": null,
+      "kind": "departure",
+      "ts": "2026-08-27T10:00:00.000Z",
+      "title": "Departed Alat",
+      "description": "Hazar departed Alat bound for Turkmenbashi.",
+      "severity": null,
+      "data": {}
+    },
+    {
+      "id": "ev-021",
+      "vessel_id": "mv-009",
+      "related_vessel_id": null,
+      "kind": "departure",
+      "ts": "2026-08-27T12:00:00.000Z",
+      "title": "Departed Atyrau",
+      "description": "Zhaiyk departed Atyrau bound for Aktau.",
+      "severity": null,
+      "data": {}
+    },
+    {
+      "id": "ev-023",
+      "vessel_id": "mv-011",
+      "related_vessel_id": null,
+      "kind": "departure",
+      "ts": "2026-08-27T14:00:00.000Z",
+      "title": "Departed Makhachkala",
+      "description": "Kaspiysk Trader departed Makhachkala bound for Aktau.",
+      "severity": null,
+      "data": {}
+    },
+    {
+      "id": "ev-019",
+      "vessel_id": "mv-007",
+      "related_vessel_id": null,
+      "kind": "departure",
+      "ts": "2026-08-27T16:00:00.000Z",
+      "title": "Departed Alat",
+      "description": "Karabakh departed Alat bound for Aktau.",
+      "severity": null,
+      "data": {}
+    },
+    {
+      "id": "ev-015",
+      "vessel_id": "mv-005",
+      "related_vessel_id": null,
+      "kind": "loitering_detected",
+      "ts": "2026-08-27T18:00:00.000Z",
+      "title": "Suspicious loitering detected",
+      "description": "Buzachi has remained within a 3 km radius in open water, well away from any port, anchorage, or established route, moving in slow repeated loops for over 20 hours.",
+      "severity": "watch",
+      "data": {
+        "area": {
+          "lat": 42.6,
+          "lon": 49.9
+        },
+        "duration_hours": 20,
+        "avg_speed_kn": 2
+      }
+    },
+    {
+      "id": "ev-022",
+      "vessel_id": "mv-010",
+      "related_vessel_id": null,
+      "kind": "departure",
+      "ts": "2026-08-27T18:00:00.000Z",
+      "title": "Departed Astrakhan",
+      "description": "Lotos departed Astrakhan bound for Baku.",
+      "severity": null,
+      "data": {}
+    },
+    {
+      "id": "ev-016",
+      "vessel_id": "mv-005",
+      "related_vessel_id": null,
+      "kind": "restricted_area_entry",
+      "ts": "2026-08-27T19:00:00.000Z",
+      "title": "Loitering inside Subsea Cable Protection Zone",
+      "description": "Buzachi's loitering position falls inside the Subsea Cable Protection Zone, a designated protected zone, adding to the concern around this vessel's activity.",
+      "severity": "watch",
+      "data": {
+        "zone_id": "cable_protection",
+        "zone_name": "Subsea Cable Protection Zone"
+      }
+    },
+    {
+      "id": "ev-027",
+      "vessel_id": "mv-015",
+      "related_vessel_id": null,
+      "kind": "departure",
+      "ts": "2026-08-27T19:00:00.000Z",
+      "title": "Departed Alat",
+      "description": "Shirvan departed Alat bound for Bandar Anzali.",
+      "severity": null,
+      "data": {}
+    },
+    {
+      "id": "ev-001",
+      "vessel_id": "mv-001",
+      "related_vessel_id": null,
+      "kind": "departure",
+      "ts": "2026-08-27T20:00:00.000Z",
+      "title": "Departed Turkmenbashi",
+      "description": "Serdar departed Turkmenbashi bound for Alat, transmitting AIS normally.",
+      "severity": null,
+      "data": {}
+    },
+    {
+      "id": "ev-025",
+      "vessel_id": "mv-013",
+      "related_vessel_id": null,
+      "kind": "departure",
+      "ts": "2026-08-27T22:00:00.000Z",
+      "title": "Departed Bandar Anzali",
+      "description": "Alborz departed Bandar Anzali bound for Amirabad.",
+      "severity": null,
+      "data": {}
+    },
+    {
+      "id": "ev-009",
+      "vessel_id": "mv-002",
+      "related_vessel_id": null,
+      "kind": "ais_position_jump",
+      "ts": "2026-08-28T00:00:00.000Z",
+      "title": "Impossible position jump detected",
+      "description": "Consecutive AIS reports implied a speed of roughly 184 kn, far exceeding this vessel's capability — inconsistent with continuous AIS transmission.",
+      "severity": "watch",
+      "data": {
+        "expected_position": {
+          "lat": 42.20584,
+          "lon": 48.7039
+        },
+        "reported_position": {
+          "lat": 42.23723,
+          "lon": 49.73527
+        },
+        "implied_speed_kn": 184
+      }
+    },
+    {
+      "id": "ev-017",
+      "vessel_id": "mv-006",
+      "related_vessel_id": null,
+      "kind": "departure",
+      "ts": "2026-08-28T00:00:00.000Z",
+      "title": "Departed Alat",
+      "description": "Xezer departed Alat bound for Aktau on the standard Middle Corridor ferry corridor.",
+      "severity": null,
+      "data": {}
+    },
+    {
+      "id": "ev-010",
+      "vessel_id": "mv-002",
+      "related_vessel_id": null,
+      "kind": "ais_normal",
+      "ts": "2026-08-28T00:15:00.000Z",
+      "title": "AIS transmission resumed normal pattern",
+      "description": "Subsequent AIS reports returned to a track consistent with the vessel's prior heading and speed.",
+      "severity": null,
+      "data": {}
+    },
+    {
+      "id": "ev-024",
+      "vessel_id": "mv-012",
+      "related_vessel_id": null,
+      "kind": "departure",
+      "ts": "2026-08-28T02:00:00.000Z",
+      "title": "Departed Turkmenbashi",
+      "description": "Balkan departed Turkmenbashi bound for Neka.",
+      "severity": null,
+      "data": {}
+    },
+    {
+      "id": "ev-002",
+      "vessel_id": "mv-001",
+      "related_vessel_id": null,
+      "kind": "ais_normal",
+      "ts": "2026-08-28T02:30:00.000Z",
+      "title": "AIS transmission normal",
+      "description": "Regular AIS position reports received, consistent with expected transit speed and heading.",
+      "severity": null,
+      "data": {}
+    },
+    {
+      "id": "ev-003",
+      "vessel_id": "mv-001",
+      "related_vessel_id": null,
+      "kind": "ais_gap",
+      "ts": "2026-08-28T04:00:00.000Z",
+      "title": "AIS signal lost",
+      "description": "Last AIS position received at 39.674, 51.453. No further AIS reports since.",
+      "severity": "elevated",
+      "data": {
+        "last_position": {
+          "lat": 39.67358,
+          "lon": 51.45283
+        },
+        "last_ts": "2026-08-28T04:00:00.000Z"
+      }
+    },
+    {
+      "id": "ev-020",
+      "vessel_id": "mv-008",
+      "related_vessel_id": null,
+      "kind": "departure",
+      "ts": "2026-08-28T04:00:00.000Z",
+      "title": "Departed Aktau",
+      "description": "Aktau Pioneer departed Aktau bound for Alat.",
+      "severity": null,
+      "data": {}
+    },
+    {
+      "id": "ev-004",
+      "vessel_id": "mv-001",
+      "related_vessel_id": null,
+      "kind": "sar_detection",
+      "ts": "2026-08-28T04:50:00.000Z",
+      "title": "SAR observation received",
+      "description": "Sentinel-1 SAR pass detected a vessel-sized radar return near the predicted track, approximately 50 minutes after AIS loss.",
+      "severity": "elevated",
+      "data": {
+        "sensor_type": "SAR",
+        "source": "Simulated Sentinel-1 SAR pass (synthetic demo detection)",
+        "position": {
+          "lat": 39.79519,
+          "lon": 51.28626
+        },
+        "estimated_length_m": 113,
+        "estimated_heading_deg": 33,
+        "confidence": 0.81,
+        "detected_targets": 1,
+        "footprint": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                51.236414201526514,
+                39.71259256605492
+              ],
+              [
+                51.363776194861146,
+                39.72634516522059
+              ],
+              [
+                51.336220961492536,
+                39.87775686123887
+              ],
+              [
+                51.2085838641739,
+                39.86397395702314
+              ],
+              [
+                51.236414201526514,
+                39.71259256605492
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "ev-005",
+      "vessel_id": "mv-001",
+      "related_vessel_id": null,
+      "kind": "correlation_failed",
+      "ts": "2026-08-28T04:51:00.000Z",
+      "title": "No reliable AIS correlation found",
+      "description": "MARINT compared the SAR detection against all active and recently-lost AIS tracks in the area. No vessel matched within tolerance.",
+      "severity": "elevated",
+      "data": {
+        "ais_match_confidence": 0.12
+      }
+    },
+    {
+      "id": "ev-026",
+      "vessel_id": "mv-014",
+      "related_vessel_id": null,
+      "kind": "departure",
+      "ts": "2026-08-28T05:00:00.000Z",
+      "title": "Departed Amirabad",
+      "description": "Mazandaran departed Amirabad bound for Bandar Anzali.",
+      "severity": null,
+      "data": {}
+    },
+    {
+      "id": "ev-006",
+      "vessel_id": "mv-001",
+      "related_vessel_id": null,
+      "kind": "optical_detection",
+      "ts": "2026-08-28T05:32:00.000Z",
+      "title": "Optical observation received",
+      "description": "A subsequent Sentinel-2 optical pass, under clear-sky conditions, imaged a vessel-shaped object close to the SAR detection position, independently corroborating it.",
+      "severity": "elevated",
+      "data": {
+        "sensor_type": "Optical",
+        "source": "Simulated Sentinel-2 optical pass (synthetic demo detection)",
+        "position": {
+          "lat": 39.8298,
+          "lon": 51.10882
+        },
+        "estimated_length_m": 110,
+        "estimated_heading_deg": 169.3,
+        "confidence": 0.88,
+        "detected_targets": 1,
+        "footprint": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                51.08213932625086,
+                39.77487284309724
+              ],
+              [
+                51.16226870188442,
+                39.78795217763238
+              ],
+              [
+                51.13554001947827,
+                39.884724867245055
+              ],
+              [
+                51.05530280224458,
+                39.871627096459434
+              ],
+              [
+                51.08213932625086,
+                39.77487284309724
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "ev-007",
+      "vessel_id": "mv-001",
+      "related_vessel_id": null,
+      "kind": "dark_vessel_alert",
+      "ts": "2026-08-28T05:33:00.000Z",
+      "title": "Possible dark vessel alert generated",
+      "description": "Detection flagged as a possible dark vessel: AIS gap on Serdar's known corridor coincides with an uncorrelated SAR return, independently corroborated by a Sentinel-2 optical pass, near the predicted position.",
+      "severity": "elevated",
+      "data": {}
+    },
+    {
+      "id": "ev-018",
+      "vessel_id": "mv-006",
+      "related_vessel_id": null,
+      "kind": "route_deviation",
+      "ts": "2026-08-28T06:00:00.000Z",
+      "title": "Unexpected route deviation detected",
+      "description": "Xezer diverged sharply from the established Alat–Aktau corridor and has not resumed course toward its filed destination.",
+      "severity": "watch",
+      "data": {
+        "expected_destination": "Aktau",
+        "deviation_bearing_change_deg": -55
+      }
+    },
+    {
+      "id": "ev-029",
+      "vessel_id": "mv-016",
+      "related_vessel_id": null,
+      "kind": "departure",
+      "ts": "2026-08-28T07:00:00.000Z",
+      "title": "Departed Baku",
+      "description": "Volga Trader departed Baku bound for Makhachkala.",
+      "severity": null,
+      "data": {}
+    },
+    {
+      "id": "ev-011",
+      "vessel_id": "mv-003",
+      "related_vessel_id": "mv-004",
+      "kind": "ship_to_ship_start",
+      "ts": "2026-08-28T08:00:00.000Z",
+      "title": "Vessels converged offshore",
+      "description": "Neft Dashlari and Khazar Servis closed to within approximately 150 m of each other near the ACG offshore field and held station.",
+      "severity": "watch",
+      "data": {
+        "location": {
+          "lat": 40.37,
+          "lon": 50.77
+        }
+      }
+    },
+    {
+      "id": "ev-013",
+      "vessel_id": "mv-003",
+      "related_vessel_id": "mv-004",
+      "kind": "restricted_area_entry",
+      "ts": "2026-08-28T08:00:00.000Z",
+      "title": "Activity inside ACG Offshore Security Zone",
+      "description": "The rendezvous occurred inside the ACG Offshore Security Zone, a designated offshore security zone — both vessels' presence there is being tracked accordingly.",
+      "severity": "watch",
+      "data": {
+        "zone_id": "acg_security",
+        "zone_name": "ACG Offshore Security Zone"
+      }
+    },
+    {
+      "id": "ev-012",
+      "vessel_id": "mv-003",
+      "related_vessel_id": "mv-004",
+      "kind": "ship_to_ship_end",
+      "ts": "2026-08-28T09:30:00.000Z",
+      "title": "Possible ship-to-ship activity concluded",
+      "description": "After remaining in close proximity for approximately 1.5 hours, the two vessels resumed independent movement.",
+      "severity": "watch",
+      "data": {
+        "duration_hours": 1.5
+      }
+    },
+    {
+      "id": "ev-028",
+      "vessel_id": "mv-015",
+      "related_vessel_id": null,
+      "kind": "arrival",
+      "ts": "2026-08-28T13:00:00.000Z",
+      "title": "Arrived Bandar Anzali",
+      "description": "Shirvan arrived at Bandar Anzali and is now moored.",
+      "severity": null,
+      "data": {}
+    }
+  ]
+}

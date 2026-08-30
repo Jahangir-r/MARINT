@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
+
+  /* Brand ramp — from MARINT brand references. Do not introduce blues outside
+     this ramp. These are accent colors and stay the same in both themes. */
+  --color-cyan-light: #8fd9ff;
+  --color-cyan: #2fa7d6;
+  --color-blue: #1d5e8a;
+  --color-navy: #112a46;
+  --color-navy-deep: #081d33;
+  --color-bg-light: #f7fafd;
+
+  /* Semantic surface/text tokens — LIGHT values here are the default theme.
+     Dark-mode values are applied via [data-theme="dark"] below. Every
+     operational-app component should use these (bg-surface-*, border-
+     hairline, text-ink) rather than literal white/black/hex so both themes
+     stay in sync from one place. The homepage keeps its own fixed dark
+     cinematic palette regardless of theme — see Home.tsx's data-theme lock.
+     Light values are tuned to the UI Reference's airy maritime-tech dashboard:
+     a near-white blue-tinted base, pure-white primary cards, and a slightly
+     stronger tint for secondary/toolbar surfaces. */
+  --color-surface-0: #f4f9fc;
+  --color-surface-1: #ffffff;
+  --color-surface-2: #f7fbfd;
+  --color-surface-3: #eef7fc;
+  --color-hairline: #dce7f0;
+  --color-ink: #081d33;
+
+  /* Elevation and chrome tokens — light-mode-specific "premium" surface
+     language from the UI Reference (soft blue-tinted shadow instead of flat
+     grey, a subtle gradient for the top nav's chrome). Both collapse to the
+     plain dark-mode look below, so components that use them don't need their
+     own light/dark branching. */
+  --shadow-soft: 0 1px 2px rgba(17, 42, 70, 0.04), 0 8px 24px rgba(29, 94, 138, 0.1);
+  --shadow-card: 0 1px 3px rgba(17, 42, 70, 0.05), 0 4px 14px rgba(29, 94, 138, 0.06);
+  --nav-surface: linear-gradient(135deg, #eef8ff 0%, #e4f2fc 55%, #d9ecfa 100%);
+
+  /* Semantic — used sparingly, reserved for status/risk/alerts only. Kept
+     theme-invariant: a risk color should mean the same thing in both modes. */
+  --color-status-normal: #2fbf8e;
+  --color-status-info: #2fa7d6;
+  --color-status-warning: #e0a530;
+  --color-status-critical: #e0483f;
+  --color-status-dark-vessel: #b754e0;
+
+  --color-track-normal: #2fa7d6;
+  --color-track-historical: #4c6b85;
+  --color-track-anomaly: #e0483f;
+
+  /* Homepage-only cinematic tokens. The public homepage is a full-bleed
+     storytelling site (video hero, pinned GSAP scenes, SVG world/Caspian
+     backdrops) rather than a dashboard of cards, so it gets its own small
+     token pair instead of reusing the operational surface/ink tokens above —
+     those are tuned for dashboard panels and would collide with
+     --color-navy-deep already being used elsewhere as a fixed
+     (theme-invariant) brand color.
+     Light values below are the default; dark is overridden to match the
+     original, approved dark homepage EXACTLY (same hex the markup used to
+     hardcode as bg-navy-deep/text-white), so existing dark-mode visuals do
+     not shift at all. */
+  --color-home-bg: #f4f9fc;
+  --color-home-ink: #081d33;
+
+  /* BrandTransition (loading/logo-intro) tokens. The fluid material and the
+     mark's own brand-gradient fills are already the theme-invariant brand
+     ramp and need no branching — only the page-level backdrop, the ambient
+     glow (built around a "screen" blend that only reads correctly against a
+     dark backdrop), and the wordmark text color actually differ by theme. */
+  --bt-bg: linear-gradient(160deg, #f4f9fc 0%, #eef7fc 100%);
+  --bt-glow: radial-gradient(circle, rgba(47, 167, 214, 0.24) 0%, rgba(29, 94, 138, 0.1) 40%, rgba(244, 249, 252, 0) 70%);
+  --bt-glow-blend: normal;
+  --color-bt-wordmark: #081d33;
+
+  /* Global Vision story marker (the small pulsing dot on the world map).
+     Dark value matches the always-approved current appearance; light value
+     is a stronger, deeper blue so the dot doesn't blend into the pale land
+     fill used in light mode. The halo is a light-mode-only accent — its
+     opacity is 0 in dark so the extra ring stays invisible there rather
+     than changing the approved dark appearance. */
+  --color-story-marker: #1d5e8a;
+  --story-marker-halo-opacity: 0.4;
+
+  /* Hero video wash — a flat color laid over the surveillance footage so it
+     reads as atmosphere, not a video player. Light needed a lower opacity
+     than a direct light/dark swap of the same number would give (a 70%-
+     opaque near-white wash reads as almost fully opaque and hides the
+     footage), so this is its own token rather than reusing a Tailwind
+     bg-home-bg/NN opacity modifier for both themes. */
+  --home-hero-wash: rgba(244, 249, 252, 0.56);
+}
+
+/* Dark mode — the original operational palette, preserved exactly, applied
+   whenever the user has chosen dark (or the very first paint hasn't yet run
+   the light/dark decision — see the inline script in index.html). */
+[data-theme="dark"] {
+  --color-surface-0: #060f1a;
+  --color-surface-1: #0a1826;
+  --color-surface-2: #0f2135;
+  --color-surface-3: #16304a;
+  --color-hairline: #1f3550;
+  --color-ink: #eaf2f8;
+
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.3);
+  --nav-surface: var(--color-surface-1);
+
+  --color-home-bg: #081d33;
+  --color-home-ink: #ffffff;
+
+  --bt-bg: linear-gradient(160deg, #081d33 0%, #112a46 100%);
+  --bt-glow: radial-gradient(circle, rgba(143, 217, 255, 0.5) 0%, rgba(47, 167, 214, 0.2) 35%, rgba(8, 29, 51, 0) 68%);
+  --bt-glow-blend: screen;
+  --color-bt-wordmark: #ffffff;
+
+  --color-story-marker: #8fd9ff;
+  --story-marker-halo-opacity: 0;
+
+  --home-hero-wash: rgba(8, 29, 51, 0.7);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-surface-0);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@keyframes radar-pulse {
+  0% { transform: scale(0.85); opacity: 0.55; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+.animate-radar {
+  animation: radar-pulse 3.2s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+
+/* Theme the MapLibre attribution control to match the operational map */
+.maplibregl-ctrl-attrib {
+  background: color-mix(in srgb, var(--color-surface-1) 85%, transparent) !important;
+  color: color-mix(in srgb, var(--color-ink) 55%, transparent) !important;
+  font-size: 10px !important;
+  border-radius: 6px !important;
+}
+.maplibregl-ctrl-attrib a {
+  color: color-mix(in srgb, var(--color-ink) 70%, transparent) !important;
+}
+[data-theme="dark"] .maplibregl-ctrl-attrib-button {
+  filter: invert(1) brightness(1.6);
+}
+
+@media print {
+  @page { margin: 14mm; }
+  .print-hidden { display: none !important; }
+  html, body { background: #fff !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

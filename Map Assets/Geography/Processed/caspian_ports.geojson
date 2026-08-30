@@ -1,0 +1,210 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "baku",
+      "properties": {
+        "name": "Baku",
+        "country": "AZE",
+        "kind": "major",
+        "precision": "verified",
+        "note": "Historic main Baku port, Baku Bay"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          49.5256,
+          40.2343
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "alat",
+      "properties": {
+        "name": "Alat",
+        "country": "AZE",
+        "kind": "major",
+        "precision": "approximate",
+        "note": "Baku International Sea Trade Port, Middle Corridor hub"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          49.4464,
+          39.9699
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "aktau",
+      "properties": {
+        "name": "Aktau",
+        "country": "KAZ",
+        "kind": "major",
+        "precision": "verified",
+        "note": "Main Kazakh Caspian oil-export & Middle Corridor port"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          51.1575,
+          43.6525
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kuryk",
+      "properties": {
+        "name": "Kuryk",
+        "country": "KAZ",
+        "kind": "terminal",
+        "precision": "verified",
+        "note": "Ferry / rail-ferry terminal south of Aktau"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          51.75,
+          43.2667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "atyrau",
+      "properties": {
+        "name": "Atyrau",
+        "country": "KAZ",
+        "kind": "terminal",
+        "precision": "approximate",
+        "note": "North Caspian port at the mouth of the Ural River"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          51.5868,
+          46.9805
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "turkmenbashi",
+      "properties": {
+        "name": "Turkmenbashi",
+        "country": "TKM",
+        "kind": "major",
+        "precision": "verified",
+        "note": "Main Turkmen seaport, Krasnovodsk Bay"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          53.033,
+          40
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "astrakhan",
+      "properties": {
+        "name": "Astrakhan",
+        "country": "RUS",
+        "kind": "major",
+        "precision": "verified",
+        "note": "Volga river/sea port, North-South Corridor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          47.95,
+          46.3
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "makhachkala",
+      "properties": {
+        "name": "Makhachkala",
+        "country": "RUS",
+        "kind": "major",
+        "precision": "approximate",
+        "note": "Western Caspian coast, Dagestan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          47.5,
+          42.9833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bandar_anzali",
+      "properties": {
+        "name": "Bandar Anzali",
+        "country": "IRN",
+        "kind": "major",
+        "precision": "verified",
+        "note": "Largest and oldest Iranian Caspian port"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          49.47,
+          37.4708
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "amirabad",
+      "properties": {
+        "name": "Amirabad",
+        "country": "IRN",
+        "kind": "major",
+        "precision": "verified",
+        "note": "Highest-capacity Iranian Caspian port"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          53.365,
+          36.85
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "neka",
+      "properties": {
+        "name": "Neka",
+        "country": "IRN",
+        "kind": "terminal",
+        "precision": "approximate",
+        "note": "Mazandaran province oil terminal"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          53.2666,
+          36.8333
+        ]
+      }
+    }
+  ],
+  "properties": {
+    "data_type": "real",
+    "source": "Hand-curated from Wikipedia / official port authority sites / port aggregators (see Info/DATA_SOURCES.md)",
+    "source_url": null,
+    "is_synthetic": false,
+    "retrieved_at": "2026-08-28"
+  }
+}

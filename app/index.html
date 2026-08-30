@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MARINT — Maritime Intelligence</title>
+    <meta name="description" content="MARINT transforms fragmented maritime information into one unified operational picture. Born in the Caspian. Built for global waters." />
+    <script>
+      // Applied before first paint so there's no flash of the wrong theme.
+      // Light is the default operational theme — only set the attribute
+      // when the stored preference (or a first-visit OS signal) is dark.
+      (function () {
+        try {
+          var stored = localStorage.getItem("marint.theme");
+          var theme = stored === "light" || stored === "dark" ? stored : null;
+          if (theme === "dark") document.documentElement.setAttribute("data-theme", "dark");
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,123 @@
+{
+  "data_type": "real",
+  "source": "Hand-curated Caspian port coordinates (see Info/DATA_SOURCES.md)",
+  "is_synthetic": false,
+  "retrieved_at": "2026-08-28",
+  "ports": [
+    {
+      "id": "baku",
+      "name": "Baku",
+      "country": "AZE",
+      "lon": 49.5256,
+      "lat": 40.2343,
+      "kind": "major",
+      "precision": "verified",
+      "note": "Historic main Baku port, Baku Bay"
+    },
+    {
+      "id": "alat",
+      "name": "Alat",
+      "country": "AZE",
+      "lon": 49.4464,
+      "lat": 39.9699,
+      "kind": "major",
+      "precision": "approximate",
+      "note": "Baku International Sea Trade Port, Middle Corridor hub"
+    },
+    {
+      "id": "aktau",
+      "name": "Aktau",
+      "country": "KAZ",
+      "lon": 51.1575,
+      "lat": 43.6525,
+      "kind": "major",
+      "precision": "verified",
+      "note": "Main Kazakh Caspian oil-export & Middle Corridor port"
+    },
+    {
+      "id": "kuryk",
+      "name": "Kuryk",
+      "country": "KAZ",
+      "lon": 51.75,
+      "lat": 43.2667,
+      "kind": "terminal",
+      "precision": "verified",
+      "note": "Ferry / rail-ferry terminal south of Aktau"
+    },
+    {
+      "id": "atyrau",
+      "name": "Atyrau",
+      "country": "KAZ",
+      "lon": 51.5868,
+      "lat": 46.9805,
+      "kind": "terminal",
+      "precision": "approximate",
+      "note": "North Caspian port at the mouth of the Ural River"
+    },
+    {
+      "id": "turkmenbashi",
+      "name": "Turkmenbashi",
+      "country": "TKM",
+      "lon": 53.033,
+      "lat": 40,
+      "kind": "major",
+      "precision": "verified",
+      "note": "Main Turkmen seaport, Krasnovodsk Bay"
+    },
+    {
+      "id": "astrakhan",
+      "name": "Astrakhan",
+      "country": "RUS",
+      "lon": 47.95,
+      "lat": 46.3,
+      "kind": "major",
+      "precision": "verified",
+      "note": "Volga river/sea port, North-South Corridor"
+    },
+    {
+      "id": "makhachkala",
+      "name": "Makhachkala",
+      "country": "RUS",
+      "lon": 47.5,
+      "lat": 42.9833,
+      "kind": "major",
+      "precision": "approximate",
+      "note": "Western Caspian coast, Dagestan"
+    },
+    {
+      "id": "bandar_anzali",
+      "name": "Bandar Anzali",
+      "country": "IRN",
+      "lon": 49.47,
+      "lat": 37.4708,
+      "kind": "major",
+      "precision": "verified",
+      "note": "Largest and oldest Iranian Caspian port"
+    },
+    {
+      "id": "amirabad",
+      "name": "Amirabad",
+      "country": "IRN",
+      "lon": 53.365,
+      "lat": 36.85,
+      "kind": "major",
+      "precision": "verified",
+      "note": "Highest-capacity Iranian Caspian port"
+    },
+    {
+      "id": "neka",
+      "name": "Neka",
+      "country": "IRN",
+      "lon": 53.2666,
+      "lat": 36.8333,
+      "kind": "terminal",
+      "precision": "approximate",
+      "note": "Mazandaran province oil terminal"
+    }
+  ],
+  "acg_field": {
+    "lon": 50.75,
+    "lat": 40.35,
+    "name": "Azeri-Chirag-Gunashli (offshore energy area)"
+  }
+}

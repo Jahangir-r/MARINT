@@ -1,0 +1,1660 @@
+{
+  "data_type": "synthetic",
+  "source": "MARINT Demo Dataset",
+  "source_url": null,
+  "retrieved_at": null,
+  "is_synthetic": true,
+  "generated_at": "2026-08-28T21:16:03.990Z",
+  "window": {
+    "start": "2026-08-24T14:00:00.000Z",
+    "end": "2026-08-28T14:00:00.000Z"
+  },
+  "vessels": [
+    {
+      "id": "mv-001",
+      "name": "Serdar",
+      "imo": "4629983",
+      "mmsi": "434849442",
+      "callsign": "EZAPOF",
+      "flag": "TKM",
+      "type": "product_tanker",
+      "type_label": "Product Tanker",
+      "category": "tanker",
+      "length": 115,
+      "beam": 16,
+      "image": "turkmenistan_product_tanker.png",
+      "origin": "Turkmenbashi",
+      "destination": "Alat",
+      "scenario": "dark_vessel",
+      "risk_score": 65,
+      "risk_band": "elevated",
+      "risk_band_label": "Elevated",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        },
+        {
+          "code": "ais_gap",
+          "label": "AIS transmission gap",
+          "delta": 25
+        },
+        {
+          "code": "sar_uncorrelated",
+          "label": "Uncorrelated satellite (SAR) detection",
+          "delta": 20
+        },
+        {
+          "code": "optical_corroboration",
+          "label": "Optical corroboration of uncorrelated SAR detection",
+          "delta": 15
+        }
+      ],
+      "current": {
+        "lat": 39.67358,
+        "lon": 51.45283,
+        "sog": 12.5,
+        "cog": 303.4,
+        "heading": 303.4,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T04:00:00.000Z",
+        "ais_active": false
+      }
+    },
+    {
+      "id": "mv-002",
+      "name": "Kalmykia Trader",
+      "imo": "3394581",
+      "mmsi": "273661822",
+      "callsign": "UBNTYW",
+      "flag": "RUS",
+      "type": "general_cargo",
+      "type_label": "General Cargo",
+      "category": "cargo",
+      "length": 120,
+      "beam": 16,
+      "image": "russia_general_cargo_vessel.png",
+      "origin": "Baku",
+      "destination": "Astrakhan",
+      "scenario": "ais_anomaly",
+      "risk_score": 29,
+      "risk_band": "watch",
+      "risk_band_label": "Watch",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        },
+        {
+          "code": "ais_position_jump",
+          "label": "Impossible position jump between AIS reports",
+          "delta": 24
+        }
+      ],
+      "current": {
+        "lat": 45.16197,
+        "lon": 49.23559,
+        "sog": 13,
+        "cog": 18.2,
+        "heading": 18.2,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-003",
+      "name": "Neft Dashlari",
+      "imo": "8933954",
+      "mmsi": "423579543",
+      "callsign": "4KWIY",
+      "flag": "AZE",
+      "type": "oil_tanker",
+      "type_label": "Oil Tanker",
+      "category": "tanker",
+      "length": 130,
+      "beam": 17,
+      "image": "azerbaijan_oil_tanker.png",
+      "origin": "Alat",
+      "destination": "Offshore energy area (ACG field)",
+      "scenario": "ship_to_ship",
+      "risk_score": 35,
+      "risk_band": "watch",
+      "risk_band_label": "Watch",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        },
+        {
+          "code": "ship_to_ship",
+          "label": "Possible ship-to-ship activity",
+          "delta": 14
+        },
+        {
+          "code": "restricted_area",
+          "label": "Activity inside a designated restricted/protected zone",
+          "delta": 16
+        }
+      ],
+      "current": {
+        "lat": 40.32023,
+        "lon": 50.79441,
+        "sog": 6,
+        "cog": 74.3,
+        "heading": 74.3,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-004",
+      "name": "Khazar Servis",
+      "imo": "4697863",
+      "mmsi": "423696369",
+      "callsign": "4KMIP",
+      "flag": "AZE",
+      "type": "offshore_supply",
+      "type_label": "Offshore Supply Vessel",
+      "category": "offshore",
+      "length": 65,
+      "beam": 15,
+      "image": "azerbaijan_offshore_supply_vessel.png",
+      "origin": "Alat",
+      "destination": "Offshore energy area (ACG field)",
+      "scenario": "ship_to_ship",
+      "risk_score": 35,
+      "risk_band": "watch",
+      "risk_band_label": "Watch",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        },
+        {
+          "code": "ship_to_ship",
+          "label": "Possible ship-to-ship activity",
+          "delta": 14
+        },
+        {
+          "code": "restricted_area",
+          "label": "Activity inside a designated restricted/protected zone",
+          "delta": 16
+        }
+      ],
+      "current": {
+        "lat": 40.34002,
+        "lon": 50.68545,
+        "sog": 5.5,
+        "cog": 164.5,
+        "heading": 164.5,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-005",
+      "name": "Buzachi",
+      "imo": "3364158",
+      "mmsi": "436465217",
+      "callsign": "UN7SDQ",
+      "flag": "KAZ",
+      "type": "general_cargo",
+      "type_label": "General Cargo",
+      "category": "cargo",
+      "length": 120,
+      "beam": 16,
+      "image": "kazakhstan_patrol_boat.png",
+      "origin": "Atyrau",
+      "destination": "Unknown / no filed destination",
+      "scenario": "loitering",
+      "risk_score": 39,
+      "risk_band": "watch",
+      "risk_band_label": "Watch",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        },
+        {
+          "code": "loitering",
+          "label": "Prolonged offshore loitering away from normal traffic patterns",
+          "delta": 18
+        },
+        {
+          "code": "restricted_area",
+          "label": "Activity inside a designated restricted/protected zone",
+          "delta": 16
+        }
+      ],
+      "current": {
+        "lat": 42.5954,
+        "lon": 49.91851,
+        "sog": 2,
+        "cog": 61.5,
+        "heading": 61.5,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-006",
+      "name": "Xezer",
+      "imo": "4304624",
+      "mmsi": "423389161",
+      "callsign": "4KYXO",
+      "flag": "AZE",
+      "type": "ro_pax_ferry",
+      "type_label": "Ro-Pax Ferry",
+      "category": "ferry",
+      "length": 150,
+      "beam": 18,
+      "image": "azerbaijan_ro_pax_ferry.png",
+      "origin": "Alat",
+      "destination": "Aktau",
+      "scenario": "route_deviation",
+      "risk_score": 25,
+      "risk_band": "watch",
+      "risk_band_label": "Watch",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        },
+        {
+          "code": "route_deviation",
+          "label": "Unexpected deviation from expected route corridor",
+          "delta": 20
+        }
+      ],
+      "current": {
+        "lat": 43.51789,
+        "lon": 48.08024,
+        "sog": 22,
+        "cog": 317.4,
+        "heading": 317.4,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-007",
+      "name": "Karabakh",
+      "imo": "3183994",
+      "mmsi": "423597204",
+      "callsign": "4KDVH",
+      "flag": "AZE",
+      "type": "oil_tanker",
+      "type_label": "Oil Tanker",
+      "category": "tanker",
+      "length": 130,
+      "beam": 17,
+      "image": "azerbaijan_oil_tanker.png",
+      "origin": "Alat",
+      "destination": "Aktau",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 43.54346,
+        "lon": 51.1662,
+        "sog": 12,
+        "cog": 349.9,
+        "heading": 349.9,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-008",
+      "name": "Aktau Pioneer",
+      "imo": "5903257",
+      "mmsi": "436223274",
+      "callsign": "UN7GXG",
+      "flag": "KAZ",
+      "type": "ro_pax_ferry",
+      "type_label": "Ro-Pax Ferry",
+      "category": "ferry",
+      "length": 150,
+      "beam": 18,
+      "image": "kazakhstan-pilot-boat.png",
+      "origin": "Aktau",
+      "destination": "Alat",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 40.09102,
+        "lon": 50.52121,
+        "sog": 22,
+        "cog": 261.9,
+        "heading": 261.9,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-009",
+      "name": "Zhaiyk",
+      "imo": "9045675",
+      "mmsi": "436570666",
+      "callsign": "UN7SXU",
+      "flag": "KAZ",
+      "type": "oil_tanker",
+      "type_label": "Oil Tanker",
+      "category": "tanker",
+      "length": 130,
+      "beam": 17,
+      "image": "kazakhstan-hydrographic-survey-vessel.png",
+      "origin": "Atyrau",
+      "destination": "Aktau",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 43.17347,
+        "lon": 51.25729,
+        "sog": 12,
+        "cog": 349.9,
+        "heading": 349.9,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-010",
+      "name": "Lotos",
+      "imo": "5545653",
+      "mmsi": "273032893",
+      "callsign": "UBNJMN",
+      "flag": "RUS",
+      "type": "oil_tanker",
+      "type_label": "Oil Tanker",
+      "category": "tanker",
+      "length": 130,
+      "beam": 17,
+      "image": "russia-oil-product-tanker.png",
+      "origin": "Astrakhan",
+      "destination": "Baku",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 42.25051,
+        "lon": 48.70099,
+        "sog": 12,
+        "cog": 177.2,
+        "heading": 177.2,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-011",
+      "name": "Kaspiysk Trader",
+      "imo": "6977592",
+      "mmsi": "273399231",
+      "callsign": "UBNSZV",
+      "flag": "RUS",
+      "type": "general_cargo",
+      "type_label": "General Cargo",
+      "category": "cargo",
+      "length": 120,
+      "beam": 16,
+      "image": "russia_general_cargo_vessel.png",
+      "origin": "Makhachkala",
+      "destination": "Aktau",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 43.19878,
+        "lon": 51.12714,
+        "sog": 13,
+        "cog": 147.3,
+        "heading": 147.3,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-012",
+      "name": "Balkan",
+      "imo": "1456347",
+      "mmsi": "434904620",
+      "callsign": "EZAGJS",
+      "flag": "TKM",
+      "type": "general_cargo",
+      "type_label": "General Cargo",
+      "category": "cargo",
+      "length": 120,
+      "beam": 16,
+      "image": "turkmenistan-landing-craft.png",
+      "origin": "Turkmenbashi",
+      "destination": "Neka",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 38.63146,
+        "lon": 52.18516,
+        "sog": 13,
+        "cog": 154.2,
+        "heading": 154.2,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-013",
+      "name": "Alborz",
+      "imo": "8758524",
+      "mmsi": "422687182",
+      "callsign": "EQPSKO",
+      "flag": "IRN",
+      "type": "product_tanker",
+      "type_label": "Product Tanker",
+      "category": "tanker",
+      "length": 115,
+      "beam": 16,
+      "image": "iran_fishing_vessel.png",
+      "origin": "Bandar Anzali",
+      "destination": "Amirabad",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 37.03435,
+        "lon": 53.20717,
+        "sog": 12.5,
+        "cog": 142.8,
+        "heading": 142.8,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-014",
+      "name": "Mazandaran",
+      "imo": "2762834",
+      "mmsi": "422345628",
+      "callsign": "EQPOTM",
+      "flag": "IRN",
+      "type": "general_cargo",
+      "type_label": "General Cargo",
+      "category": "cargo",
+      "length": 120,
+      "beam": 16,
+      "image": "iran-ro-ro-cargo-vessel.png",
+      "origin": "Amirabad",
+      "destination": "Bandar Anzali",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 37.04399,
+        "lon": 51.13888,
+        "sog": 13,
+        "cog": 264.9,
+        "heading": 264.9,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-015",
+      "name": "Shirvan",
+      "imo": "8662658",
+      "mmsi": "423786813",
+      "callsign": "4KOEG",
+      "flag": "AZE",
+      "type": "general_cargo",
+      "type_label": "General Cargo",
+      "category": "cargo",
+      "length": 120,
+      "beam": 16,
+      "image": "azerbaijan_ro_pax_ferry.png",
+      "origin": "Alat",
+      "destination": "Bandar Anzali",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 37.49328,
+        "lon": 49.47,
+        "sog": 0,
+        "cog": null,
+        "heading": null,
+        "nav_status": "Moored",
+        "ts": "2026-08-28T13:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-016",
+      "name": "Volga Trader",
+      "imo": "3146283",
+      "mmsi": "273143023",
+      "callsign": "UBNQEO",
+      "flag": "RUS",
+      "type": "general_cargo",
+      "type_label": "General Cargo",
+      "category": "cargo",
+      "length": 120,
+      "beam": 16,
+      "image": "russia_general_cargo_vessel.png",
+      "origin": "Baku",
+      "destination": "Makhachkala",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 40.70861,
+        "lon": 50.13783,
+        "sog": 13,
+        "cog": 314.3,
+        "heading": 314.3,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-017",
+      "name": "Hazar",
+      "imo": "2287171",
+      "mmsi": "434235792",
+      "callsign": "EZAUBW",
+      "flag": "TKM",
+      "type": "product_tanker",
+      "type_label": "Product Tanker",
+      "category": "tanker",
+      "length": 115,
+      "beam": 16,
+      "image": "turkmenistan_product_tanker.png",
+      "origin": "Alat",
+      "destination": "Turkmenbashi",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 39.98622,
+        "lon": 53.04809,
+        "sog": 12.5,
+        "cog": 356.8,
+        "heading": 356.8,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-018",
+      "name": "Bakili",
+      "imo": "8105117",
+      "mmsi": "423451243",
+      "callsign": "4KLRM",
+      "flag": "AZE",
+      "type": "harbor_tug",
+      "type_label": "Harbor Tug",
+      "category": "tug",
+      "length": 30,
+      "beam": 10,
+      "image": "azerbaijan_harbor_tug.png",
+      "origin": "Baku",
+      "destination": "Baku area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 40.22137,
+        "lon": 49.59619,
+        "sog": 7,
+        "cog": 248,
+        "heading": 248,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-019",
+      "name": "Derbent",
+      "imo": "9465083",
+      "mmsi": "273495587",
+      "callsign": "UBNDRC",
+      "flag": "RUS",
+      "type": "harbor_tug",
+      "type_label": "Harbor Tug",
+      "category": "tug",
+      "length": 30,
+      "beam": 10,
+      "image": "russia_harbor_tug.png",
+      "origin": "Makhachkala",
+      "destination": "Makhachkala area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 43.00516,
+        "lon": 47.48126,
+        "sog": 7,
+        "cog": 140.4,
+        "heading": 140.4,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-020",
+      "name": "Mangystau Romqory",
+      "imo": "3447819",
+      "mmsi": "436190096",
+      "callsign": "UN7BLT",
+      "flag": "KAZ",
+      "type": "harbor_tug",
+      "type_label": "Harbor Tug",
+      "category": "tug",
+      "length": 30,
+      "beam": 10,
+      "image": "kazakhstan-pilot-boat.png",
+      "origin": "Aktau",
+      "destination": "Aktau area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 43.62395,
+        "lon": 51.20349,
+        "sog": 6,
+        "cog": 251.1,
+        "heading": 251.1,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-021",
+      "name": "Deniz Gozetci",
+      "imo": "1827728",
+      "mmsi": "423650845",
+      "callsign": "4KOAG",
+      "flag": "AZE",
+      "type": "patrol_vessel",
+      "type_label": "Patrol Vessel",
+      "category": "patrol",
+      "length": 55,
+      "beam": 9,
+      "image": "azerbaijan_patrol_vessel.png",
+      "origin": "Baku",
+      "destination": "Baku area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 40.39048,
+        "lon": 50.68336,
+        "sog": 14,
+        "cog": 79.3,
+        "heading": 79.3,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-022",
+      "name": "Mangystau Qorgany",
+      "imo": "4660444",
+      "mmsi": "436469875",
+      "callsign": "UN7MNY",
+      "flag": "KAZ",
+      "type": "patrol_vessel",
+      "type_label": "Patrol Vessel",
+      "category": "patrol",
+      "length": 55,
+      "beam": 9,
+      "image": "kazakhstan_patrol_boat.png",
+      "origin": "Aktau",
+      "destination": "Aktau area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 43.16729,
+        "lon": 51.03022,
+        "sog": 15,
+        "cog": 203.7,
+        "heading": 203.7,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-023",
+      "name": "Gilan Sayad",
+      "imo": "9617612",
+      "mmsi": "422233318",
+      "callsign": "EQPNPG",
+      "flag": "IRN",
+      "type": "fishing_vessel",
+      "type_label": "Fishing Vessel",
+      "category": "fishing",
+      "length": 24,
+      "beam": 7,
+      "image": "iran_fishing_vessel.png",
+      "origin": "Bandar Anzali",
+      "destination": "Bandar Anzali area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 37.51072,
+        "lon": 49.39056,
+        "sog": 7,
+        "cog": 114.2,
+        "heading": 114.2,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-024",
+      "name": "Lankaran Sayad",
+      "imo": "6373514",
+      "mmsi": "423094132",
+      "callsign": "4KHEV",
+      "flag": "AZE",
+      "type": "fishing_vessel",
+      "type_label": "Fishing Vessel",
+      "category": "fishing",
+      "length": 24,
+      "beam": 7,
+      "image": "azerbaijan_harbor_tug.png",
+      "origin": "Baku",
+      "destination": "Baku area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 40.20164,
+        "lon": 49.65819,
+        "sog": 7,
+        "cog": 255.4,
+        "heading": 255.4,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-025",
+      "name": "Ptichnik",
+      "imo": "8660246",
+      "mmsi": "273871428",
+      "callsign": "UBNOJS",
+      "flag": "RUS",
+      "type": "fishing_vessel",
+      "type_label": "Fishing Vessel",
+      "category": "fishing",
+      "length": 24,
+      "beam": 7,
+      "image": "russia_harbor_tug.png",
+      "origin": "Makhachkala",
+      "destination": "Makhachkala area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 42.97466,
+        "lon": 47.53559,
+        "sog": 7.5,
+        "cog": 86.2,
+        "heading": 86.2,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-026",
+      "name": "Amyderya",
+      "imo": "5315113",
+      "mmsi": "434755654",
+      "callsign": "EZACUL",
+      "flag": "TKM",
+      "type": "fishing_vessel",
+      "type_label": "Fishing Vessel",
+      "category": "fishing",
+      "length": 24,
+      "beam": 7,
+      "image": "turkmenistan-deryaky-hazar-crane-vessel.png",
+      "origin": "Turkmenbashi",
+      "destination": "Turkmenbashi area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 39.98398,
+        "lon": 53.04017,
+        "sog": 7,
+        "cog": 324.6,
+        "heading": 324.6,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-027",
+      "name": "Sefid Rud",
+      "imo": "7980027",
+      "mmsi": "422947126",
+      "callsign": "EQPXRW",
+      "flag": "IRN",
+      "type": "offshore_supply",
+      "type_label": "Offshore Supply Vessel",
+      "category": "offshore",
+      "length": 65,
+      "beam": 15,
+      "image": "iran-research-survey-vessel.png",
+      "origin": "Bandar Anzali",
+      "destination": "Bandar Anzali area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 37.54477,
+        "lon": 49.40147,
+        "sog": 9,
+        "cog": 266.2,
+        "heading": 266.2,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-028",
+      "name": "Gilan Explorer",
+      "imo": "6287856",
+      "mmsi": "422001944",
+      "callsign": "EQPPOW",
+      "flag": "IRN",
+      "type": "research_survey_vessel",
+      "type_label": "Research/Survey Vessel",
+      "category": "offshore",
+      "length": 55,
+      "beam": 12,
+      "image": "iran-research-survey-vessel.png",
+      "origin": "Bandar Anzali",
+      "destination": "Bandar Anzali area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 37.516,
+        "lon": 49.48669,
+        "sog": 10,
+        "cog": 135,
+        "heading": 135,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-029",
+      "name": "Mangystau Pilot",
+      "imo": "9883340",
+      "mmsi": "436520420",
+      "callsign": "UN7GKC",
+      "flag": "KAZ",
+      "type": "pilot_boat",
+      "type_label": "Pilot Boat",
+      "category": "tug",
+      "length": 18,
+      "beam": 5.5,
+      "image": "kazakhstan-pilot-boat.png",
+      "origin": "Aktau",
+      "destination": "Aktau area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 43.59796,
+        "lon": 51.12493,
+        "sog": 12,
+        "cog": 46.2,
+        "heading": 46.2,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-030",
+      "name": "Kuma",
+      "imo": "7058707",
+      "mmsi": "273799033",
+      "callsign": "UBNSIU",
+      "flag": "RUS",
+      "type": "product_tanker",
+      "type_label": "Product Tanker",
+      "category": "tanker",
+      "length": 115,
+      "beam": 16,
+      "image": "russia-oil-product-tanker.png",
+      "origin": "Astrakhan",
+      "destination": "Astrakhan area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 45.91997,
+        "lon": 48.48285,
+        "sog": 11,
+        "cog": 170.3,
+        "heading": 170.3,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-031",
+      "name": "Balkan Shore",
+      "imo": "7647510",
+      "mmsi": "434462122",
+      "callsign": "EZAAEI",
+      "flag": "TKM",
+      "type": "landing_craft",
+      "type_label": "Landing Craft",
+      "category": "cargo",
+      "length": 40,
+      "beam": 10,
+      "image": "turkmenistan-landing-craft.png",
+      "origin": "Turkmenbashi",
+      "destination": "Turkmenbashi area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 39.97962,
+        "lon": 53.04421,
+        "sog": 8,
+        "cog": 324.6,
+        "heading": 324.6,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-032",
+      "name": "Siyazan",
+      "imo": "5013375",
+      "mmsi": "423506687",
+      "callsign": "4KPVH",
+      "flag": "AZE",
+      "type": "dredger",
+      "type_label": "Dredger",
+      "category": "offshore",
+      "length": 70,
+      "beam": 14,
+      "image": "azerbaijan-dredger.png",
+      "origin": "Alat",
+      "destination": "Alat area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 39.96385,
+        "lon": 49.45181,
+        "sog": 6,
+        "cog": 75,
+        "heading": 75,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-033",
+      "name": "Rasht Trader",
+      "imo": "8394835",
+      "mmsi": "422936445",
+      "callsign": "EQPHAI",
+      "flag": "IRN",
+      "type": "ro_ro_cargo",
+      "type_label": "Ro-Ro Cargo Vessel",
+      "category": "cargo",
+      "length": 140,
+      "beam": 20,
+      "image": "iran-ro-ro-cargo-vessel.png",
+      "origin": "Amirabad",
+      "destination": "Amirabad area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 36.86799,
+        "lon": 53.35225,
+        "sog": 13,
+        "cog": 270,
+        "heading": 270,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-034",
+      "name": "Cebrayil",
+      "imo": "6881482",
+      "mmsi": "423167933",
+      "callsign": "4KYJC",
+      "flag": "AZE",
+      "type": "cable_layer",
+      "type_label": "Cable-Laying Vessel",
+      "category": "offshore",
+      "length": 100,
+      "beam": 18,
+      "image": "azerbaijan-cebrayil-cable-laying-vessel.png",
+      "origin": "Baku",
+      "destination": "Baku area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 40.1723,
+        "lon": 49.5641,
+        "sog": 9,
+        "cog": 328.8,
+        "heading": 328.8,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-035",
+      "name": "Xudat",
+      "imo": "7776141",
+      "mmsi": "423079114",
+      "callsign": "4KUWW",
+      "flag": "AZE",
+      "type": "search_rescue",
+      "type_label": "Search and Rescue Vessel",
+      "category": "patrol",
+      "length": 42,
+      "beam": 8,
+      "image": "azerbaijan-search-and-rescue-vessel.png",
+      "origin": "Baku",
+      "destination": "Baku area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 40.201,
+        "lon": 49.55619,
+        "sog": 17,
+        "cog": 58.3,
+        "heading": 58.3,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-036",
+      "name": "Kaspiy Surveyor",
+      "imo": "7133818",
+      "mmsi": "436302576",
+      "callsign": "UN7JIF",
+      "flag": "KAZ",
+      "type": "hydrographic_survey",
+      "type_label": "Hydrographic Survey Vessel",
+      "category": "offshore",
+      "length": 48,
+      "beam": 11,
+      "image": "kazakhstan-hydrographic-survey-vessel.png",
+      "origin": "Kuryk",
+      "destination": "Kuryk area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 43.15642,
+        "lon": 51.65809,
+        "sog": 10,
+        "cog": 315,
+        "heading": 315,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-037",
+      "name": "Mangystau Guard",
+      "imo": "1386798",
+      "mmsi": "436617055",
+      "callsign": "UN7TNT",
+      "flag": "KAZ",
+      "type": "oil_spill_response",
+      "type_label": "Oil Spill Response Vessel",
+      "category": "offshore",
+      "length": 60,
+      "beam": 13,
+      "image": "kazakhstan-oil-spill-response-vessel.png",
+      "origin": "Aktau",
+      "destination": "Aktau area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 43.62455,
+        "lon": 51.13,
+        "sog": 11,
+        "cog": 172.9,
+        "heading": 172.9,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-038",
+      "name": "Aleksey Chirikov",
+      "imo": "2441143",
+      "mmsi": "273832885",
+      "callsign": "UBNTVD",
+      "flag": "RUS",
+      "type": "platform_supply",
+      "type_label": "Platform Supply Vessel",
+      "category": "offshore",
+      "length": 75,
+      "beam": 16,
+      "image": "russia-aleksey-chirikov-platform-supply-vessel.png",
+      "origin": "Makhachkala",
+      "destination": "Makhachkala area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 42.98494,
+        "lon": 47.50404,
+        "sog": 12,
+        "cog": 319.4,
+        "heading": 319.4,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-039",
+      "name": "Slavyanin",
+      "imo": "6875938",
+      "mmsi": "273051546",
+      "callsign": "UBNNYJ",
+      "flag": "RUS",
+      "type": "ro_ro_cargo",
+      "type_label": "Ro-Ro Cargo Vessel",
+      "category": "cargo",
+      "length": 140,
+      "beam": 20,
+      "image": "russia-slavyanin-ro-ro-cargo-ship.png",
+      "origin": "Astrakhan",
+      "destination": "Astrakhan area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 45.90984,
+        "lon": 48.49824,
+        "sog": 14,
+        "cog": 17.8,
+        "heading": 17.8,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-040",
+      "name": "Artavil",
+      "imo": "8892887",
+      "mmsi": "422963406",
+      "callsign": "EQPCVY",
+      "flag": "IRN",
+      "type": "bulk_carrier",
+      "type_label": "Bulk Carrier",
+      "category": "cargo",
+      "length": 190,
+      "beam": 28,
+      "image": "iran-iran-artavil-bulk-carrier.png",
+      "origin": "Neka",
+      "destination": "Neka area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 36.85129,
+        "lon": 53.2545,
+        "sog": 12,
+        "cog": 270,
+        "heading": 270,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-041",
+      "name": "Iranshahr",
+      "imo": "1070636",
+      "mmsi": "422574232",
+      "callsign": "EQPYLE",
+      "flag": "IRN",
+      "type": "container_ship",
+      "type_label": "Container Ship",
+      "category": "cargo",
+      "length": 210,
+      "beam": 30,
+      "image": "iran-iran-shahr-container-ship.png",
+      "origin": "Bandar Anzali",
+      "destination": "Bandar Anzali area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 37.49328,
+        "lon": 49.4885,
+        "sog": 16,
+        "cog": 270,
+        "heading": 270,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-042",
+      "name": "Deryaky Hazar",
+      "imo": "1824532",
+      "mmsi": "434089066",
+      "callsign": "EZAWAB",
+      "flag": "TKM",
+      "type": "crane_vessel",
+      "type_label": "Crane Vessel",
+      "category": "offshore",
+      "length": 85,
+      "beam": 22,
+      "image": "turkmenistan-deryaky-hazar-crane-vessel.png",
+      "origin": "Turkmenbashi",
+      "destination": "Turkmenbashi area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 39.9835,
+        "lon": 53.05863,
+        "sog": 7,
+        "cog": 225,
+        "heading": 225,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    },
+    {
+      "id": "mv-043",
+      "name": "Awaza",
+      "imo": "3652983",
+      "mmsi": "434015456",
+      "callsign": "EZAOGT",
+      "flag": "TKM",
+      "type": "passenger_catamaran",
+      "type_label": "Passenger Catamaran",
+      "category": "ferry",
+      "length": 45,
+      "beam": 12,
+      "image": "turkmenistan-awaza-passenger-catamaran.png",
+      "origin": "Turkmenbashi",
+      "destination": "Turkmenbashi area (local operations)",
+      "scenario": null,
+      "risk_score": 5,
+      "risk_band": "low",
+      "risk_band_label": "Low",
+      "risk_factors": [
+        {
+          "code": "baseline",
+          "label": "Baseline operational uncertainty",
+          "delta": 5
+        }
+      ],
+      "current": {
+        "lat": 39.98482,
+        "lon": 53.04014,
+        "sog": 20,
+        "cog": 73,
+        "heading": 73,
+        "nav_status": "Underway using engine",
+        "ts": "2026-08-28T14:00:00.000Z",
+        "ais_active": true
+      }
+    }
+  ]
+}
