@@ -1,9 +1,8 @@
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useScrollScene } from "./motion/useScrollScene";
 import { prefersReducedMotion } from "./motion/gsapSetup";
-import { pinnedScrollTrigger, sectionHeightVh } from "./motion/pinConfig";
+import { pinnedScrollTrigger, pinInnerStyle, responsivePinVh, sectionHeightVh } from "./motion/pinConfig";
 
-const PIN_VH = 220;
 const CAPABILITIES = [
   { title: "Dark Vessel Detection", body: "When a detection can't be matched to any known AIS track, MARINT flags it with the evidence." },
   { title: "AIS Anomalies", body: "Impossible position jumps and transmission gaps are surfaced with the exact reading that triggered them." },
@@ -14,6 +13,7 @@ const CAPABILITIES = [
 ];
 
 export default function CapabilitiesStory() {
+  const PIN_VH = responsivePinVh(220, 160);
   const rootRef = useScrollScene<HTMLDivElement>(({ gsap, scope }) => {
     const items = Array.from(scope.querySelectorAll<HTMLElement>("[data-cap-item]"));
     const glyphs = Array.from(scope.querySelectorAll<SVGGElement>("[data-cap-glyph]"));
@@ -49,7 +49,7 @@ export default function CapabilitiesStory() {
 
   return (
     <section id="capabilities" ref={rootRef} className="relative bg-surface-0 border-y border-hairline" style={{ height: sectionHeightVh(PIN_VH) }}>
-    <div data-pin-inner className="relative h-dvh min-h-[640px] overflow-hidden">
+    <div data-pin-inner className="relative min-h-[640px] overflow-hidden" style={pinInnerStyle()}>
       <div className="max-w-6xl mx-auto h-full grid grid-cols-1 lg:grid-cols-2 gap-10 items-center px-6">
         <div>
           <p className="text-[11px] uppercase tracking-[0.3em] text-cyan/70 mb-6">Capabilities</p>

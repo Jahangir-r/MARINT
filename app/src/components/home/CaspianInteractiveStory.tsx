@@ -4,7 +4,7 @@ import type { GeoJSONSource } from "maplibre-gl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ensureGsap, prefersReducedMotion } from "./motion/gsapSetup";
-import { pinnedScrollTrigger, sectionHeightVh } from "./motion/pinConfig";
+import { pinnedScrollTrigger, pinInnerStyle, responsivePinVh, sectionHeightVh } from "./motion/pinConfig";
 import { useMarintStore } from "../../lib/store";
 import { applyMapTheme, buildBaseStyle } from "../../lib/mapStyle";
 import { vesselArrowIcon, detectionDiamondIcon } from "../../lib/mapIcons";
@@ -14,7 +14,6 @@ import SatelliteChip from "../investigation/SatelliteChip";
 import { useTheme } from "../../lib/theme";
 import type { DetectionData, TrackPoint } from "../../types";
 
-const PIN_VH = 380;
 const VESSEL_ID = "mv-001"; // Serdar — the dark-vessel scenario, real generated data
 
 function lerp(a: number, b: number, t: number) {
@@ -50,6 +49,7 @@ export default function CaspianInteractiveStory() {
   const [theme] = useTheme();
   const themeRef = useRef(theme);
   themeRef.current = theme;
+  const PIN_VH = responsivePinVh(380, 220);
 
   useEffect(() => {
     load();
@@ -323,7 +323,7 @@ export default function CaspianInteractiveStory() {
 
   return (
     <section ref={scopeRef} className="relative bg-home-bg" style={{ height: sectionHeightVh(PIN_VH) }}>
-      <div data-pin-inner className="relative h-dvh min-h-[640px] overflow-hidden">
+      <div data-pin-inner className="relative min-h-[640px] overflow-hidden" style={pinInnerStyle()}>
         <div ref={containerRef} className="absolute inset-0 h-full w-full" />
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-home-bg/55 via-transparent to-home-bg/70" />
 

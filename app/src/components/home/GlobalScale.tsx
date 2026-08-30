@@ -1,12 +1,11 @@
 import { useRef } from "react";
 import { useScrollScene } from "./motion/useScrollScene";
 import { prefersReducedMotion } from "./motion/gsapSetup";
-import { pinnedScrollTrigger, sectionHeightVh } from "./motion/pinConfig";
+import { pinnedScrollTrigger, pinInnerStyle, responsivePinVh, sectionHeightVh } from "./motion/pinConfig";
 import WorldBackdrop, { computeWorldTransform } from "./motion/WorldBackdrop";
 import { CASPIAN_CENTER_WORLD } from "./motion/useWorldMapPaths";
 import { useTheme } from "../../lib/theme";
 
-const PIN_VH = 150;
 const PHRASES = ["BORN IN THE CASPIAN.", "BUILT FOR GLOBAL WATERS."];
 // Pulls back from a tight Caspian view to a moderately wider regional view —
 // enough to read as "part of a larger, global-capable system" without
@@ -18,6 +17,7 @@ export default function GlobalScale() {
   const worldGroupRef = useRef<SVGGElement>(null);
   const [theme] = useTheme();
   const isDark = theme === "dark";
+  const PIN_VH = responsivePinVh(150, 100);
 
   const rootRef = useScrollScene<HTMLDivElement>(({ gsap, scope }) => {
     const pinEl = scope.querySelector<HTMLElement>("[data-pin-inner]");
@@ -70,7 +70,7 @@ export default function GlobalScale() {
 
   return (
     <section ref={rootRef} className="relative bg-home-bg" style={{ height: sectionHeightVh(PIN_VH) }}>
-    <div data-pin-inner className="relative h-dvh min-h-[640px] overflow-hidden">
+    <div data-pin-inner className="relative min-h-[640px] overflow-hidden" style={pinInnerStyle()}>
       <p data-eyebrow className="absolute top-14 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-cyan/60">
         Global-ready
       </p>

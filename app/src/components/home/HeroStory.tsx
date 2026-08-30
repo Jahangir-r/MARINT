@@ -1,14 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useScrollScene } from "./motion/useScrollScene";
 import { prefersReducedMotion } from "./motion/gsapSetup";
-import { pinnedScrollTrigger, sectionHeightVh } from "./motion/pinConfig";
+import { pinnedScrollTrigger, pinInnerStyle, responsivePinVh, sectionHeightVh } from "./motion/pinConfig";
 import { triggerOperationsTransition } from "../../lib/brandTransition";
 
 const PHRASES = ["ONE SEA.", "THOUSANDS OF VESSELS.", "MILLIONS OF SIGNALS.", "ONE OPERATIONAL PICTURE."];
-const PIN_VH = 200;
 
 export default function HeroStory() {
   const navigate = useNavigate();
+  const PIN_VH = responsivePinVh(200, 130);
   const rootRef = useScrollScene<HTMLDivElement>(({ gsap, scope }) => {
     const pinEl = scope.querySelector<HTMLElement>("[data-pin-inner]");
     const bg = scope.querySelector<HTMLElement>("[data-bg]");
@@ -49,7 +49,7 @@ export default function HeroStory() {
 
   return (
     <section ref={rootRef} className="relative bg-home-bg" style={{ height: sectionHeightVh(PIN_VH) }}>
-    <div data-pin-inner className="relative h-dvh min-h-[640px] overflow-hidden">
+    <div data-pin-inner className="relative min-h-[640px] overflow-hidden" style={pinInnerStyle()}>
       <div data-bg className="absolute inset-0" style={{ transformOrigin: "50% 50%" }}>
         {/* Atmospheric background footage — plays continuously on its own
             (autoplay/loop/muted), independent of scroll. Kept subtle in both

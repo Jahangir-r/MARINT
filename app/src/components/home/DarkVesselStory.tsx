@@ -1,12 +1,11 @@
 import { useScrollScene } from "./motion/useScrollScene";
 import { prefersReducedMotion } from "./motion/gsapSetup";
-import { pinnedScrollTrigger, sectionHeightVh } from "./motion/pinConfig";
+import { pinnedScrollTrigger, pinInnerStyle, responsivePinVh, sectionHeightVh } from "./motion/pinConfig";
 import CaspianMap from "./motion/CaspianMap";
 import WorldBackdrop from "./motion/WorldBackdrop";
 import { CASPIAN_PORTS_XY } from "./motion/caspianPath";
 import { useTheme } from "../../lib/theme";
 
-const PIN_VH = 230;
 const LABELS = [
   "A VESSEL CAN SWITCH OFF AIS.",
   "BUT IT CANNOT DISAPPEAR FROM THE SEA.",
@@ -24,6 +23,7 @@ const SAR: [number, number] = [468, 428];
 export default function DarkVesselStory() {
   const [theme] = useTheme();
   const isDark = theme === "dark";
+  const PIN_VH = responsivePinVh(230, 150);
   const rootRef = useScrollScene<HTMLDivElement>(({ gsap, scope }) => {
     const labels = Array.from(scope.querySelectorAll<HTMLElement>("[data-label]"));
     const vessel = scope.querySelector<SVGCircleElement>("[data-vessel]");
@@ -81,7 +81,7 @@ export default function DarkVesselStory() {
 
   return (
     <section ref={rootRef} className="relative bg-home-bg" style={{ height: sectionHeightVh(PIN_VH) }}>
-    <div data-pin-inner className="relative h-dvh min-h-[640px] overflow-hidden">
+    <div data-pin-inner className="relative min-h-[640px] overflow-hidden" style={pinInnerStyle()}>
       <p className="absolute top-14 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-status-dark-vessel/70">
         The dark vessel problem
       </p>

@@ -9,6 +9,15 @@ import FlagIcon from "../common/FlagIcon";
 import AiCopilot from "../investigation/AiCopilot";
 
 type Tab = "overview" | "ais" | "history" | "events" | "copilot";
+// Mobile bottom-sheet only: COMPACT is an identity-preview card (no tabs --
+// name/flag/risk/photo-thumbnail/speed-course-status), EXPANDED is the full
+// analytical workspace (hero, quick stats, tabs). Kept as plain vh-equivalent
+// fractions of window.innerHeight, recomputed on demand -- this sheet is a
+// static overlay (not GSAP-scroll-jacked), so it has none of the dvh/
+// ScrollTrigger desync problem the homepage pinned scenes have, and can
+// safely use dvh directly.
+const COMPACT_SHEET_VH = 30;
+const EXPANDED_SHEET_VH = 78;
 
 export default function VesselPanel() {
   const selectedVesselId = useMarintStore((s) => s.selectedVesselId);
@@ -20,12 +29,14 @@ export default function VesselPanel() {
   const effectiveTimeMs = useMarintStore((s) => s.effectiveTimeMs());
   const isLive = useMarintStore((s) => s.isLive());
   const selectVessel = useMarintStore((s) => s.selectVessel);
+  const mapInstance = useMarintStore((s) => s.mapInstance);
   const [tab, setTab] = useState<Tab>("overview");
-  // Mobile bottom-sheet only: starts compact (map stays mostly visible) and
-  // expands on tap of the drag handle. Reset to compact whenever a
-  // different vessel is selected -- selecting a new vessel from a small
-  // sheet feels broken if it silently stays huge from a previous session.
-  const [sheetExpanded, setSheetExpanded] = useState(false);
+  // Mobile bottom-sheet only: starts COMPACT (identity preview, map stays
+  // mostly visible) and only reveals the full tabbed workspace once
+  // EXPANDED. Reset to compact + Overview whenever a different vessel is
+  // selected -- carrying over a previous vessel's expanded/tab state reads
+  // as a stale/broken sheet, not a preserved preference.
+  const [sheetState, setSheetState] = useState<"compact" | "expanded">("compact");
 
   // Everything shown here — position, risk, AIS state, track, events — is
   // derived at the current playback (or live) time, never the vessel's
@@ -45,8 +56,19 @@ export default function VesselPanel() {
   // stale/broken state, not a preserved preference.
   useEffect(() => {
     setTab("overview");
-    setSheetExpanded(false);
+    setSheetState("compact");
   }, [selectedVesselId]);
+
+  // Keep the selected vessel's marker visible above the mobile sheet by
+  // padding the map's bottom edge to match whatever the sheet currently
+  // occupies -- desktop has no bottom sheet, so this is fully gated off
+  // there. Resets to 0 as soon as nothing is selected (sheet closed).
+  useEffect(() => {
+    if (typeof window === "undefined" || window.innerWidth >= 1024 || !mapInstance) return;
+    const vh = window.innerHeight;
+    const paddingVh = !selectedVesselId ? 0 : sheetState === "expanded" ? EXPANDED_SHEET_VH : COMPACT_SHEET_VH;
+    mapInstance.easeTo({ padding: { top: 0, bottom: Math.round((vh * paddingVh) / 100), left: 0, right: 0 }, duration: 250 });
+  }, [mapInstance, selectedVesselId, sheetState]);
 
   if (!vessel || !selectedVesselId) return null;
   const c = vessel.current;
@@ -172,7 +194,7 @@ export default function VesselPanel() {
   );
 
   const tabContent = (
-    <div className="flex-1 overflow-y-auto p-4 text-[13px]">
+    <div className="flex-1 overflow-y-auto overscroll-contain p-4 text-[13px]">
       {tab === "overview" && (
         <div className="space-y-5">
           <FieldGrid
@@ -279,25 +301,88 @@ export default function VesselPanel() {
       >
         <div
           className="bg-surface-1 border border-hairline rounded-t-2xl flex flex-col overflow-hidden mx-auto w-full transition-[height] duration-300 ease-out"
-          style={{ height: sheetExpanded ? "80dvh" : "44dvh", boxShadow: "var(--shadow-soft)" }}
+          style={{ height: sheetState === "expanded" ? `${EXPANDED_SHEET_VH}dvh` : `${COMPACT_SHEET_VH}dvh`, boxShadow: "var(--shadow-soft)" }}
         >
-          <button
-            onClick={() => setSheetExpanded((v) => !v)}
-            aria-label={sheetExpanded ? "Collapse vessel details" : "Expand vessel details"}
-            style={{ touchAction: "manipulation" }}
-            className="flex justify-center pt-2 pb-1.5 shrink-0 w-full"
-          >
-            <span className="h-1 w-10 rounded-full bg-ink/20" />
-          </button>
-          {header}
-          {sheetExpanded && (
+          {sheetState === "compact" ? (
             <>
+              <button
+                onClick={() => setSheetState("expanded")}
+                aria-label="Expand vessel details"
+                style={{ touchAction: "manipulation" }}
+                className="flex justify-center pt-2 pb-1.5 shrink-0 w-full"
+              >
+                <span className="h-1 w-10 rounded-full bg-ink/20" />
+              </button>
+
+              {/* Identity preview — no tabs, no full hero. A small
+                  right-aligned photo thumbnail (not a full-width hero image)
+                  is enough to confirm identity at a glance while the map
+                  stays the dominant element on screen. */}
+              <div className="flex items-start gap-3 px-4 pb-3 min-h-0">
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span className="text-[10px] uppercase tracking-wider text-ink/40">{vessel.type_label}</span>
+                    {c && !c.ais_active && (
+                      <span className="text-[9px] font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded bg-status-dark-vessel/15 text-status-dark-vessel">
+                        AIS inactive
+                      </span>
+                    )}
+                  </div>
+                  <h2 className="text-base font-semibold text-ink truncate mt-0.5">{vessel.name}</h2>
+                  <div className="flex items-center gap-1.5 text-[11px] text-ink/50 mt-1">
+                    <FlagIcon country={vessel.flag} className="h-2.5 w-4" />
+                    {countryName(vessel.flag)}
+                  </div>
+                  <span
+                    className="inline-block mt-1.5 text-[10.5px] font-medium px-2 py-0.5 rounded-md"
+                    style={{ background: `${riskBandColor(vessel.risk_band)}22`, color: riskBandColor(vessel.risk_band) }}
+                  >
+                    {vessel.risk_band_label} risk · {vessel.risk_score}/100
+                  </span>
+                </div>
+                <div className="shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-surface-2 relative">
+                  {vessel.image ? (
+                    <img
+                      src={`/ships/${vessel.image}`}
+                      alt={vessel.name}
+                      className={clsx("h-full w-full object-cover", c && !c.ais_active && "grayscale-[70%] brightness-[0.6]")}
+                    />
+                  ) : (
+                    <div className="h-full w-full flex items-center justify-center text-center px-1">
+                      <span className="text-[8px] text-ink/40 leading-tight">No image</span>
+                    </div>
+                  )}
+                </div>
+                <button onClick={() => selectVessel(null)} className="text-ink/40 hover:text-ink text-lg leading-none shrink-0">×</button>
+              </div>
+
+              {quickStats}
+
+              <button
+                onClick={() => setSheetState("expanded")}
+                style={{ touchAction: "manipulation" }}
+                className="w-full text-center text-[12px] font-medium text-cyan py-2 border-t border-hairline shrink-0"
+              >
+                More details ▾
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => setSheetState("compact")}
+                aria-label="Collapse vessel details"
+                style={{ touchAction: "manipulation" }}
+                className="flex justify-center pt-2 pb-1.5 shrink-0 w-full"
+              >
+                <span className="h-1 w-10 rounded-full bg-ink/20" />
+              </button>
+              {header}
               {hero}
               {quickStats}
+              {mobileTabBar}
+              {tabContent}
             </>
           )}
-          {mobileTabBar}
-          {tabContent}
         </div>
       </div>
     </>

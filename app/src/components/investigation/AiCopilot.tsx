@@ -59,7 +59,7 @@ export default function AiCopilot({
             Ask about {vessel.name} — status, evidence, risk, or what to review next.
           </div>
         ) : (
-          <div className="p-3.5 space-y-3 max-h-72 overflow-y-auto text-[12px]">
+          <div className="p-3.5 space-y-3 max-h-72 overflow-y-auto overscroll-contain text-[12px]">
             {messages.map((m, i) => (
               <div key={i} className={m.role === "user" ? "text-right" : "text-left"}>
                 <div

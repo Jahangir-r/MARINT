@@ -1,29 +1,49 @@
 import { prefersReducedMotion } from "./gsapSetup";
+import { ensureStableViewport } from "./stableViewport";
 
 /**
- * The outer wrapper's height: 100dvh + the scrub distance normally, but just
- * 100dvh under prefers-reduced-motion (no pin is created in that case either —
- * see each section's setup — so the section must not reserve extra empty
- * scroll space for a pin that will never happen).
+ * The outer wrapper's height: 100 stable-vh-units + the scrub distance
+ * normally, but just 100 under prefers-reduced-motion (no pin is created in
+ * that case either -- see each section's setup -- so the section must not
+ * reserve extra empty scroll space for a pin that will never happen).
  *
- * Uses dvh (not vh) to match the pinned inner div's own h-dvh — mobile
- * Safari's 100vh includes the address-bar area that isn't actually visible
- * at first paint, while 100dvh tracks the real visible viewport. Mixing the
- * two here (this outer wrapper in vh, the inner pin target in dvh) is what
- * produced the mobile "dead gap after each section" bug: GSAP's ScrollTrigger
- * measures pin duration against this outer element's rendered height, so a
- * vh/dvh mismatch made the pin release before or after the inner content's
- * own height actually ran out, leaving a blank strip of empty background at
- * the seam between sections.
+ * Built from --stable-vh (see stableViewport.ts), NOT vh or dvh. GSAP
+ * ScrollTrigger measures this element's pixel height once at setup/refresh
+ * and caches it; dvh keeps changing live as Safari's address bar
+ * hides/shows mid-scroll, which desyncs that cached measurement from the
+ * real DOM and is what broke mobile pin timing. --stable-vh only changes on
+ * a genuine width/orientation change, so ScrollTrigger's cached math stays
+ * valid for the whole scroll gesture.
  */
 export function sectionHeightVh(pinVh: number): string {
-  return `${prefersReducedMotion() ? 100 : 100 + pinVh}dvh`;
+  ensureStableViewport();
+  const units = prefersReducedMotion() ? 100 : 100 + pinVh;
+  return `calc(var(--stable-vh) * ${units})`;
+}
+
+/** Inline style for the pinned inner div -- pairs with sectionHeightVh()
+ * above, same --stable-vh basis so the pin target's own height can never
+ * drift out of sync with the outer scroll-spacer it's measured against. */
+export function pinInnerStyle(): { height: string } {
+  ensureStableViewport();
+  return { height: "calc(var(--stable-vh) * 100)" };
+}
+
+/** Picks a shorter mobile scroll journey than desktop for a pinned scene.
+ * Mobile viewports are narrow and portrait; reproducing the exact desktop
+ * scroll distance reads as long dead scrolling on a phone. Both numbers are
+ * plain vh-equivalents (matching the desktop values already tuned for each
+ * section) -- only the absolute pixel distance differs, not the internal
+ * GSAP timeline's own 0..1 progress choreography, which stays identical. */
+export function responsivePinVh(desktopVh: number, mobileVh: number): number {
+  if (typeof window === "undefined") return desktopVh;
+  return window.innerWidth < 768 ? mobileVh : desktopVh;
 }
 
 /**
  * Standard pinned-scene ScrollTrigger config. Pairs with the markup pattern:
- *   <section ref={rootRef} style={{ height: `${100 + pinVh}vh` }}>
- *     <div data-pin-inner className="sticky top-0 h-screen ...">...</div>
+ *   <section ref={rootRef} style={{ height: sectionHeightVh(pinVh) }}>
+ *     <div data-pin-inner style={pinInnerStyle()} className="...">...</div>
  *   </section>
  * Pinning the INNER sticky div (not the outer section) while the outer
  * section's height already equals 100vh + the scrub distance means the pin

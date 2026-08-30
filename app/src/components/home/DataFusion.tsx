@@ -1,8 +1,7 @@
 import { useScrollScene } from "./motion/useScrollScene";
 import { prefersReducedMotion } from "./motion/gsapSetup";
-import { pinnedScrollTrigger, sectionHeightVh } from "./motion/pinConfig";
+import { pinnedScrollTrigger, pinInnerStyle, responsivePinVh, sectionHeightVh } from "./motion/pinConfig";
 
-const PIN_VH = 150;
 const SOURCES = [
   { key: "ais", label: "AIS", x: 150, y: 190 },
   { key: "sar", label: "SAR", x: 650, y: 170 },
@@ -14,6 +13,7 @@ const CENTER = { x: 400, y: 400 };
 const HEADLINES = ["FRAGMENTED SIGNALS", "CORRELATED INTELLIGENCE", "ONE OPERATIONAL PICTURE"];
 
 export default function DataFusion() {
+  const PIN_VH = responsivePinVh(150, 100);
   const rootRef = useScrollScene<HTMLDivElement>(({ gsap, scope }) => {
     const nodes = Array.from(scope.querySelectorAll<SVGGElement>("[data-node]"));
     const lines = Array.from(scope.querySelectorAll<SVGLineElement>("[data-line]"));
@@ -73,7 +73,7 @@ export default function DataFusion() {
 
   return (
     <section ref={rootRef} className="relative bg-surface-1 border-y border-hairline" style={{ height: sectionHeightVh(PIN_VH) }}>
-    <div data-pin-inner className="relative h-dvh min-h-[640px] overflow-hidden">
+    <div data-pin-inner className="relative min-h-[640px] overflow-hidden" style={pinInnerStyle()}>
       <p className="absolute top-14 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-cyan/60">
         Why correlation matters
       </p>

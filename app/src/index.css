@@ -127,6 +127,13 @@ body,
   height: 100%;
 }
 
+/* Fallback for --stable-vh before stableViewport.ts's JS measurement runs
+   (see motion/stableViewport.ts) -- used only by GSAP-pinned homepage
+   sections, never by ordinary full-height layout (those use dvh directly). */
+:root {
+  --stable-vh: 1vh;
+}
+
 body {
   margin: 0;
   background: var(--color-surface-0);
