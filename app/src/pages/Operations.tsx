@@ -20,7 +20,7 @@ export default function Operations() {
   }, [load]);
 
   return (
-    <div className="h-screen w-screen flex flex-col bg-surface-0">
+    <div className="h-dvh w-screen flex flex-col bg-surface-0">
       <TopNav />
       <div className="flex-1 flex min-h-0">
         <Sidebar />

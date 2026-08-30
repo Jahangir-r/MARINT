@@ -44,16 +44,16 @@ export default function Investigation() {
   }, [vesselId]);
 
   if (loading) {
-    return <div className="h-screen w-screen flex items-center justify-center bg-surface-0 text-ink/50 text-sm">Loading investigation…</div>;
+    return <div className="h-dvh w-screen flex items-center justify-center bg-surface-0 text-ink/50 text-sm">Loading investigation…</div>;
   }
   if (!vessel) {
-    return <div className="h-screen w-screen flex items-center justify-center bg-surface-0 text-ink/50 text-sm">Vessel not found.</div>;
+    return <div className="h-dvh w-screen flex items-center justify-center bg-surface-0 text-ink/50 text-sm">Vessel not found.</div>;
   }
 
   const investigation = buildInvestigation(vessel, events);
   if (!investigation) {
     return (
-      <div className="h-screen w-screen flex flex-col items-center justify-center gap-4 bg-surface-0 text-ink/50 text-sm">
+      <div className="h-dvh w-screen flex flex-col items-center justify-center gap-4 bg-surface-0 text-ink/50 text-sm">
         <p>{vessel.name} has no active investigation — this vessel is not currently flagged.</p>
         <Link to="/operations" className="text-cyan hover:text-cyan-light">← Back to operations</Link>
       </div>
@@ -71,7 +71,7 @@ export default function Investigation() {
   }
 
   return (
-    <div className="h-screen w-screen flex flex-col bg-surface-0">
+    <div className="h-dvh w-screen flex flex-col bg-surface-0">
       <header
         className="h-16 shrink-0 border-b border-hairline flex items-center gap-4 px-5"
         style={{ background: "var(--nav-surface)", boxShadow: "var(--shadow-card)" }}

@@ -323,7 +323,7 @@ export default function CaspianInteractiveStory() {
 
   return (
     <section ref={scopeRef} className="relative bg-home-bg" style={{ height: sectionHeightVh(PIN_VH) }}>
-      <div data-pin-inner className="relative h-screen min-h-[640px] overflow-hidden">
+      <div data-pin-inner className="relative h-dvh min-h-[640px] overflow-hidden">
         <div ref={containerRef} className="absolute inset-0 h-full w-full" />
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-home-bg/55 via-transparent to-home-bg/70" />
 
@@ -342,40 +342,40 @@ export default function CaspianInteractiveStory() {
         </div>
 
         {vessel && (
-          <div data-sat-cards className="absolute inset-x-0 bottom-24 md:bottom-28 flex justify-center gap-4 px-6 pointer-events-none">
+          <div data-sat-cards className="absolute inset-x-0 bottom-36 sm:bottom-24 md:bottom-28 flex justify-center gap-2.5 sm:gap-4 px-6 pointer-events-none">
             {opticalEvent && (
-              <div className="w-52 bg-surface-1/95 border border-hairline rounded-lg overflow-hidden shadow-2xl">
+              <div className="w-28 sm:w-40 md:w-52 bg-surface-1/95 border border-hairline rounded-lg overflow-hidden shadow-2xl">
                 <SatelliteChip
                   sensorType="Optical"
                   headingDeg={(opticalEvent.data as unknown as DetectionData).estimated_heading_deg}
                   lengthM={(opticalEvent.data as unknown as DetectionData).estimated_length_m}
                   seedKey={opticalEvent.id}
-                  className="h-28 w-full"
+                  className="h-16 sm:h-20 md:h-28 w-full"
                 />
-                <div className="p-2 text-[10.5px] text-home-ink/60">Optical corroboration</div>
+                <div className="p-1.5 sm:p-2 text-[9px] sm:text-[10.5px] text-home-ink/60 truncate">Optical corroboration</div>
               </div>
             )}
             {sarEvent && (
-              <div className="w-52 bg-surface-1/95 border border-hairline rounded-lg overflow-hidden shadow-2xl">
+              <div className="w-28 sm:w-40 md:w-52 bg-surface-1/95 border border-hairline rounded-lg overflow-hidden shadow-2xl">
                 <SatelliteChip
                   sensorType="SAR"
                   headingDeg={(sarEvent.data as unknown as DetectionData).estimated_heading_deg}
                   lengthM={(sarEvent.data as unknown as DetectionData).estimated_length_m}
                   seedKey={sarEvent.id}
-                  className="h-28 w-full"
+                  className="h-16 sm:h-20 md:h-28 w-full"
                 />
-                <div className="p-2 text-[10.5px] text-home-ink/60">SAR detection</div>
+                <div className="p-1.5 sm:p-2 text-[9px] sm:text-[10.5px] text-home-ink/60 truncate">SAR detection</div>
               </div>
             )}
           </div>
         )}
 
         {vessel && (
-          <div data-correlation-result className="absolute inset-x-0 bottom-6 flex flex-col items-center gap-2 px-6 pointer-events-none">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-status-dark-vessel bg-home-bg/85 px-3 py-1.5 rounded-md border border-status-dark-vessel/30">
+          <div data-correlation-result className="absolute inset-x-0 bottom-6 flex flex-col items-center gap-1.5 sm:gap-2 px-6 pointer-events-none">
+            <span className="text-[9.5px] sm:text-[11px] font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-status-dark-vessel bg-home-bg/85 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-md border border-status-dark-vessel/30 text-center">
               Possible dark vessel{matchConfidence !== null ? ` — ${matchConfidence}% AIS match` : ""}
             </span>
-            <span className="text-home-ink/45 text-[12px]">MARINT connects the evidence, even when AIS goes dark.</span>
+            <span className="text-home-ink/45 text-[10.5px] sm:text-[12px] text-center">MARINT connects the evidence, even when AIS goes dark.</span>
           </div>
         )}
       </div>

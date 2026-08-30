@@ -49,7 +49,7 @@ export default function HeroStory() {
 
   return (
     <section ref={rootRef} className="relative bg-home-bg" style={{ height: sectionHeightVh(PIN_VH) }}>
-    <div data-pin-inner className="relative h-screen min-h-[640px] overflow-hidden">
+    <div data-pin-inner className="relative h-dvh min-h-[640px] overflow-hidden">
       <div data-bg className="absolute inset-0" style={{ transformOrigin: "50% 50%" }}>
         {/* Atmospheric background footage — plays continuously on its own
             (autoplay/loop/muted), independent of scroll. Kept subtle in both
@@ -101,18 +101,18 @@ export default function HeroStory() {
             MARINT transforms fragmented maritime information — AIS, satellite, radar, history — into one
             unified picture, revealing activity that individual systems may miss.
           </p>
-          <div className="mt-10 flex items-center gap-4">
+          <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full max-w-xs sm:max-w-none px-6 sm:px-0">
             <Link
               to="/operations"
               onClick={(e) => {
                 e.preventDefault();
                 triggerOperationsTransition("/operations", () => navigate("/operations"));
               }}
-              className="px-6 py-3 rounded-md bg-cyan text-navy-deep font-medium text-sm hover:bg-cyan-light transition-colors"
+              className="px-6 py-3 rounded-md bg-cyan text-navy-deep font-medium text-sm hover:bg-cyan-light transition-colors text-center whitespace-nowrap"
             >
               Enter Operational Picture
             </Link>
-            <a href="#capabilities" className="px-6 py-3 rounded-md border border-home-ink/15 text-home-ink/80 text-sm hover:border-home-ink/35 transition-colors">
+            <a href="#capabilities" className="px-6 py-3 rounded-md border border-home-ink/15 text-home-ink/80 text-sm hover:border-home-ink/35 transition-colors text-center whitespace-nowrap">
               See Capabilities
             </a>
           </div>

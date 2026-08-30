@@ -1,4 +1,4 @@
-﻿import { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import clsx from "clsx";
 import { useMarintStore } from "../../lib/store";
 import { countryName, formatTimeAgo, riskBandColor } from "../../lib/format";
@@ -9,8 +9,13 @@ type Tab = "vessels" | "alerts";
 
 const RISK_ORDER: Record<string, number> = { critical: 0, elevated: 1, watch: 2, low: 3 };
 
+// Shared with Timeline's mobile collapsed bar height — the mobile drawer
+// trigger sits just above it instead of overlapping.
+export const MOBILE_TIMELINE_H = 56;
+
 export default function Sidebar() {
   const [tab, setTab] = useState<Tab>("alerts");
+  const [mobileOpen, setMobileOpen] = useState(false);
   const vessels = useMarintStore((s) => s.vessels);
   const tracks = useMarintStore((s) => s.tracks);
   const rawEvents = useMarintStore((s) => s.events);
@@ -37,9 +42,14 @@ export default function Sidebar() {
     [events]
   );
 
-  return (
-    <aside className="w-[320px] shrink-0 border-r border-hairline bg-surface-1 flex flex-col">
-      <div className="flex gap-1 border-b border-hairline text-sm p-2 bg-surface-2/60">
+  function pick(id: string | null) {
+    selectVessel(id);
+    setMobileOpen(false);
+  }
+
+  function TabBar() {
+    return (
+      <div className="flex gap-1 border-b border-hairline text-sm p-2 bg-surface-2/60 shrink-0">
         <button
           onClick={() => setTab("alerts")}
           className={clsx(
@@ -59,10 +69,14 @@ export default function Sidebar() {
           Vessels <span className="text-ink/35">({vessels.length})</span>
         </button>
       </div>
+    );
+  }
 
+  function ListBody() {
+    return (
       <div className="flex-1 overflow-y-auto">
         {tab === "vessels" &&
-          sortedVessels.map((v) => <VesselRow key={v.id} v={v} active={v.id === selectedVesselId} onClick={() => selectVessel(v.id)} />)}
+          sortedVessels.map((v) => <VesselRow key={v.id} v={v} active={v.id === selectedVesselId} onClick={() => pick(v.id)} />)}
 
         {tab === "alerts" &&
           alerts.map((e) => {
@@ -70,7 +84,7 @@ export default function Sidebar() {
             return (
               <button
                 key={e.id}
-                onClick={() => selectVessel(e.vessel_id)}
+                onClick={() => pick(e.vessel_id)}
                 className={clsx(
                   "w-full text-left px-4 py-3 border-b border-hairline/60 hover:bg-ink/[0.03]",
                   e.vessel_id === selectedVesselId && "bg-ink/[0.05]"
@@ -92,7 +106,56 @@ export default function Sidebar() {
           <div className="p-4 text-sm text-ink/40">No alerts in the current window.</div>
         )}
       </div>
-    </aside>
+    );
+  }
+
+  return (
+    <>
+      {/* Desktop — unchanged */}
+      <aside className="hidden lg:flex w-[320px] shrink-0 border-r border-hairline bg-surface-1 flex-col">
+        <TabBar />
+        <ListBody />
+      </aside>
+
+      {/* Mobile — floating segmented trigger, sits just above the collapsed timeline */}
+      <div
+        className="lg:hidden fixed left-3 z-20 flex gap-1 bg-surface-1/95 border border-hairline rounded-xl p-1"
+        style={{ bottom: `calc(${MOBILE_TIMELINE_H}px + env(safe-area-inset-bottom) + 10px)`, boxShadow: "var(--shadow-card)" }}
+      >
+        <button
+          onClick={() => { setTab("alerts"); setMobileOpen(true); }}
+          className="px-3 py-1.5 rounded-lg text-[12px] font-medium text-ink/70 active:bg-cyan/10"
+        >
+          Alerts <span className="text-ink/35">({alerts.length})</span>
+        </button>
+        <button
+          onClick={() => { setTab("vessels"); setMobileOpen(true); }}
+          className="px-3 py-1.5 rounded-lg text-[12px] font-medium text-ink/70 active:bg-cyan/10"
+        >
+          Vessels <span className="text-ink/35">({vessels.length})</span>
+        </button>
+      </div>
+
+      {/* Mobile — slide-up sheet. The backdrop covers the full screen (tap
+          anywhere on it to dismiss), but the sheet itself is anchored just
+          above the collapsed timeline bar so the timeline stays reachable
+          underneath rather than being covered by a higher-stacked sheet. */}
+      {mobileOpen && (
+        <div className="lg:hidden fixed inset-0 z-30" role="dialog" aria-modal="true">
+          <div className="absolute inset-0 bg-navy-deep/30" onClick={() => setMobileOpen(false)} />
+          <div
+            className="absolute inset-x-0 bg-surface-1 rounded-t-2xl flex flex-col overflow-hidden"
+            style={{ bottom: "calc(56px + env(safe-area-inset-bottom))", height: "60dvh", boxShadow: "var(--shadow-soft)" }}
+          >
+            <div className="flex justify-center pt-2 pb-1 shrink-0">
+              <span className="h-1 w-10 rounded-full bg-ink/15" />
+            </div>
+            <TabBar />
+            <ListBody />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

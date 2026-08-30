@@ -81,7 +81,7 @@ export default function DarkVesselStory() {
 
   return (
     <section ref={rootRef} className="relative bg-home-bg" style={{ height: sectionHeightVh(PIN_VH) }}>
-    <div data-pin-inner className="relative h-screen min-h-[640px] overflow-hidden">
+    <div data-pin-inner className="relative h-dvh min-h-[640px] overflow-hidden">
       <p className="absolute top-14 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-status-dark-vessel/70">
         The dark vessel problem
       </p>

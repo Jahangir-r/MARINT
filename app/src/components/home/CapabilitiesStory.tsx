@@ -49,7 +49,7 @@ export default function CapabilitiesStory() {
 
   return (
     <section id="capabilities" ref={rootRef} className="relative bg-surface-0 border-y border-hairline" style={{ height: sectionHeightVh(PIN_VH) }}>
-    <div data-pin-inner className="relative h-screen min-h-[640px] overflow-hidden">
+    <div data-pin-inner className="relative h-dvh min-h-[640px] overflow-hidden">
       <div className="max-w-6xl mx-auto h-full grid grid-cols-1 lg:grid-cols-2 gap-10 items-center px-6">
         <div>
           <p className="text-[11px] uppercase tracking-[0.3em] text-cyan/70 mb-6">Capabilities</p>

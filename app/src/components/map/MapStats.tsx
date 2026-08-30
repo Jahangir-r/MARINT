@@ -13,11 +13,37 @@ export default function MapStats() {
   }, [vessels, events]);
 
   return (
-    <div className="absolute top-3 right-3 z-10 flex gap-2">
-      <StatTile value={stats.total} label="Vessels tracked" accent="#2fa7d6" icon={<VesselGlyph />} />
-      <StatTile value={stats.alerts} label="Active alerts" accent="#e0a530" icon={<BellGlyph />} />
-      <StatTile value={stats.dark} label="Possible dark vessels" accent="#b754e0" icon={<GhostGlyph />} />
-      <StatTile value={stats.watchOrAbove} label="Flagged for review" accent="#e07a3f" icon={<FlagGlyph />} />
+    <>
+      {/* Desktop — unchanged */}
+      <div className="hidden lg:flex absolute top-3 right-3 z-10 gap-2">
+        <StatTile value={stats.total} label="Vessels tracked" accent="#2fa7d6" icon={<VesselGlyph />} />
+        <StatTile value={stats.alerts} label="Active alerts" accent="#e0a530" icon={<BellGlyph />} />
+        <StatTile value={stats.dark} label="Possible dark vessels" accent="#b754e0" icon={<GhostGlyph />} />
+        <StatTile value={stats.watchOrAbove} label="Flagged for review" accent="#e07a3f" icon={<FlagGlyph />} />
+      </div>
+
+      {/* Mobile — compact 2x2 grid, icon + value only */}
+      <div className="lg:hidden absolute top-3 right-3 z-10 grid grid-cols-2 gap-1.5 w-[132px]">
+        <MiniStat value={stats.total} accent="#2fa7d6" icon={<VesselGlyph />} title="Vessels tracked" />
+        <MiniStat value={stats.alerts} accent="#e0a530" icon={<BellGlyph />} title="Active alerts" />
+        <MiniStat value={stats.dark} accent="#b754e0" icon={<GhostGlyph />} title="Possible dark vessels" />
+        <MiniStat value={stats.watchOrAbove} accent="#e07a3f" icon={<FlagGlyph />} title="Flagged for review" />
+      </div>
+    </>
+  );
+}
+
+function MiniStat({ value, accent, icon, title }: { value: number; accent: string; icon: React.ReactNode; title: string }) {
+  return (
+    <div
+      title={title}
+      className="flex items-center gap-1.5 bg-surface-1/95 border border-hairline rounded-lg px-1.5 py-1.5"
+      style={{ boxShadow: "var(--shadow-card)" }}
+    >
+      <span className="h-5 w-5 rounded-md flex items-center justify-center shrink-0" style={{ background: `${accent}1f`, color: accent }}>
+        {icon}
+      </span>
+      <span className="text-sm font-semibold leading-none text-ink">{value}</span>
     </div>
   );
 }
