@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { useMarintStore } from "../../lib/store";
@@ -21,6 +21,11 @@ export default function VesselPanel() {
   const isLive = useMarintStore((s) => s.isLive());
   const selectVessel = useMarintStore((s) => s.selectVessel);
   const [tab, setTab] = useState<Tab>("overview");
+  // Mobile bottom-sheet only: starts compact (map stays mostly visible) and
+  // expands on tap of the drag handle. Reset to compact whenever a
+  // different vessel is selected -- selecting a new vessel from a small
+  // sheet feels broken if it silently stays huge from a previous session.
+  const [sheetExpanded, setSheetExpanded] = useState(false);
 
   // Everything shown here — position, risk, AIS state, track, events — is
   // derived at the current playback (or live) time, never the vessel's
@@ -34,6 +39,14 @@ export default function VesselPanel() {
     () => (selectedVesselId ? eventsForVessel(selectedVesselId).filter((e) => new Date(e.ts).getTime() <= effectiveTimeMs) : []),
     [selectedVesselId, eventsForVessel, effectiveTimeMs]
   );
+
+  // A newly-selected vessel always opens on Overview, compact — carrying
+  // over a previous vessel's "History" tab or expanded sheet reads as a
+  // stale/broken state, not a preserved preference.
+  useEffect(() => {
+    setTab("overview");
+    setSheetExpanded(false);
+  }, [selectedVesselId]);
 
   if (!vessel || !selectedVesselId) return null;
   const c = vessel.current;
@@ -114,9 +127,13 @@ export default function VesselPanel() {
     </div>
   );
 
+  const TAB_LIST = ["overview", "ais", "history", "events", "copilot"] as Tab[];
+  const tabLabel = (t: Tab) => (t === "ais" ? "AIS" : t === "copilot" ? "Co-Pilot" : t);
+
+  // Desktop — unchanged even-width pill row.
   const tabBar = (
     <div className="flex gap-1 border-b border-hairline text-[12px] shrink-0 p-1.5 bg-surface-2/60">
-      {(["overview", "ais", "history", "events", "copilot"] as Tab[]).map((t) => (
+      {TAB_LIST.map((t) => (
         <button
           key={t}
           onClick={() => setTab(t)}
@@ -125,7 +142,30 @@ export default function VesselPanel() {
             tab === t ? "bg-surface-1 text-ink shadow-sm" : "text-ink/40 hover:text-ink/70"
           )}
         >
-          {t === "ais" ? "AIS" : t === "copilot" ? "Co-Pilot" : t}
+          {tabLabel(t)}
+        </button>
+      ))}
+    </div>
+  );
+
+  // Mobile — natural-width, horizontally-scrollable pills instead of forced
+  // equal stretch (5 labels stretched across ~360px read as cramped), each
+  // with a generous ~44px touch target and touch-action: manipulation so a
+  // tap registers immediately rather than waiting to see if it's the start
+  // of a scroll/zoom gesture.
+  const mobileTabBar = (
+    <div className="flex gap-1.5 border-b border-hairline text-[12px] shrink-0 p-2 bg-surface-2/60 overflow-x-auto">
+      {TAB_LIST.map((t) => (
+        <button
+          key={t}
+          onClick={() => setTab(t)}
+          style={{ touchAction: "manipulation" }}
+          className={clsx(
+            "shrink-0 px-3.5 min-h-[38px] rounded-lg capitalize font-medium transition-colors whitespace-nowrap",
+            tab === t ? "bg-surface-1 text-ink shadow-sm" : "text-ink/50 active:bg-ink/5"
+          )}
+        >
+          {tabLabel(t)}
         </button>
       ))}
     </div>
@@ -238,16 +278,25 @@ export default function VesselPanel() {
         aria-modal="true"
       >
         <div
-          className="bg-surface-1 border border-hairline rounded-t-2xl flex flex-col overflow-hidden mx-auto w-full"
-          style={{ height: "62dvh", boxShadow: "var(--shadow-soft)" }}
+          className="bg-surface-1 border border-hairline rounded-t-2xl flex flex-col overflow-hidden mx-auto w-full transition-[height] duration-300 ease-out"
+          style={{ height: sheetExpanded ? "80dvh" : "44dvh", boxShadow: "var(--shadow-soft)" }}
         >
-          <div className="flex justify-center pt-2 pb-1 shrink-0">
-            <span className="h-1 w-10 rounded-full bg-ink/15" />
-          </div>
+          <button
+            onClick={() => setSheetExpanded((v) => !v)}
+            aria-label={sheetExpanded ? "Collapse vessel details" : "Expand vessel details"}
+            style={{ touchAction: "manipulation" }}
+            className="flex justify-center pt-2 pb-1.5 shrink-0 w-full"
+          >
+            <span className="h-1 w-10 rounded-full bg-ink/20" />
+          </button>
           {header}
-          {hero}
-          {quickStats}
-          {tabBar}
+          {sheetExpanded && (
+            <>
+              {hero}
+              {quickStats}
+            </>
+          )}
+          {mobileTabBar}
           {tabContent}
         </div>
       </div>

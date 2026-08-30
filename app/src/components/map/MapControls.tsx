@@ -120,7 +120,7 @@ export default function MapControls() {
           </button>
           {layersOpen && (
             <div
-              className="absolute top-0 left-[calc(100%+8px)] flex flex-col gap-1 bg-surface-1 border border-hairline rounded-xl p-1.5 w-40 z-20"
+              className="absolute top-full mt-2 left-0 flex flex-col gap-1 bg-surface-1 border border-hairline rounded-xl p-1.5 w-40 z-20"
               style={{ boxShadow: "var(--shadow-soft)" }}
             >
               {TOGGLES.map((t) => (

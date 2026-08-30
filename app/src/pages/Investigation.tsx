@@ -73,42 +73,60 @@ export default function Investigation() {
   return (
     <div className="h-dvh w-screen flex flex-col bg-surface-0">
       <header
-        className="h-16 shrink-0 border-b border-hairline flex items-center gap-4 px-5"
-        style={{ background: "var(--nav-surface)", boxShadow: "var(--shadow-card)" }}
+        className="shrink-0 border-b border-hairline flex flex-col lg:flex-row lg:items-center lg:h-16 lg:gap-4 lg:px-5"
+        style={{ background: "var(--nav-surface)", boxShadow: "var(--shadow-card)", paddingTop: "env(safe-area-inset-top)" }}
       >
-        <button onClick={() => navigate("/operations")} className="text-ink/50 hover:text-ink text-sm flex items-center gap-1.5">
-          ← Map
-        </button>
-        <div className="h-5 w-px bg-hairline" />
-        <BrandMark size={24} />
-        <FlagIcon country={vessel.flag} className="h-4 w-6" />
-        <div className="min-w-0 flex-1">
-          <div className="text-[10px] uppercase tracking-wider text-ink/35">{investigation.id}</div>
-          <div className="text-sm font-medium text-ink truncate">{investigation.title}</div>
+        {/* display:contents on lg+ so these render as direct flex children
+            of the header, in the original order — pixel-identical desktop
+            layout. Below lg it's a real row (first line of a 2-line
+            mobile header). */}
+        <div className="flex items-center gap-3 px-3 py-2.5 lg:contents">
+          <button onClick={() => navigate("/operations")} className="text-ink/50 hover:text-ink text-sm flex items-center gap-1.5 shrink-0">
+            ← Map
+          </button>
+          <div className="hidden lg:block h-5 w-px bg-hairline" />
+          <span className="hidden lg:inline-flex shrink-0"><BrandMark size={24} /></span>
+          <FlagIcon country={vessel.flag} className="h-4 w-6 shrink-0" />
+          <div className="min-w-0 flex-1">
+            <div className="text-[10px] uppercase tracking-wider text-ink/35 truncate">{investigation.id}</div>
+            <div className="text-sm font-medium text-ink truncate">{investigation.title}</div>
+          </div>
+          <span
+            className="text-[10px] lg:text-[11px] font-medium px-2 lg:px-2.5 py-1 rounded-md shrink-0"
+            style={{ background: `${riskBandColor(vessel.risk_band)}22`, color: riskBandColor(vessel.risk_band) }}
+          >
+            {vessel.risk_band_label} · {vessel.risk_score}/100
+          </span>
+          <span className="lg:hidden shrink-0"><ThemeToggle /></span>
         </div>
-        <span
-          className="text-[11px] font-medium px-2.5 py-1 rounded-md shrink-0"
-          style={{ background: `${riskBandColor(vessel.risk_band)}22`, color: riskBandColor(vessel.risk_band) }}
-        >
-          {vessel.risk_band_label} · {vessel.risk_score}/100
-        </span>
+
         <Link
           to={`/investigation/${vessel.id}/report`}
-          className="shrink-0 text-[13px] font-medium px-4 py-2 rounded-full bg-cyan text-navy-deep hover:bg-cyan-light transition-colors shadow-sm"
+          className="hidden lg:inline-block shrink-0 text-[13px] font-medium px-4 py-2 rounded-full bg-cyan text-navy-deep hover:bg-cyan-light transition-colors shadow-sm"
         >
           Generate Report
         </Link>
-        <ThemeToggle />
+        <span className="hidden lg:inline-flex"><ThemeToggle /></span>
+
+        {/* Mobile — second row, full-width CTA */}
+        <div className="lg:hidden px-3 pb-3">
+          <Link
+            to={`/investigation/${vessel.id}/report`}
+            className="block w-full text-center text-[13px] font-medium px-4 py-2.5 rounded-full bg-cyan text-navy-deep hover:bg-cyan-light transition-colors shadow-sm"
+          >
+            Generate Report
+          </Link>
+        </div>
       </header>
 
-      <div className="flex-1 flex min-h-0">
-        <div className="flex-1 relative min-w-0 border-r border-hairline">
+      <div className="flex-1 flex flex-col lg:flex-row min-h-0 overflow-y-auto lg:overflow-hidden">
+        <div className="relative w-full h-[38dvh] lg:h-auto lg:flex-1 lg:min-w-0 border-b lg:border-b-0 lg:border-r border-hairline shrink-0">
           <MapView />
           <MapLegend />
           <DetectionDetail />
         </div>
 
-        <div className="w-[420px] shrink-0 overflow-y-auto p-5 space-y-6 text-[13px]">
+        <div className="w-full lg:w-[420px] shrink-0 lg:overflow-y-auto p-4 lg:p-5 space-y-5 lg:space-y-6 text-[13px]">
           <section>
             <h2 className="text-[11px] uppercase tracking-wider text-ink/40 mb-2.5">Investigation summary</h2>
             <div className="space-y-3 bg-surface-1 border border-hairline rounded-xl p-4 shadow-[var(--shadow-card)]">

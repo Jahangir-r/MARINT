@@ -89,7 +89,7 @@ export default function HeroStory() {
 
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-4">
         <div data-hero-group className="flex flex-col items-center">
-          <p className="text-[11px] md:text-xs uppercase tracking-[0.35em] text-cyan/70 mb-6">
+          <p className="text-[11px] md:text-xs uppercase tracking-[0.35em] text-cyan/70 mb-6 text-center max-w-[280px] sm:max-w-none">
             Maritime Intelligence · Caspian Sea Demonstration
           </p>
           <h1 className="text-center font-display font-semibold text-home-ink leading-[0.98] text-[13vw] md:text-[6.2vw] tracking-tight">
