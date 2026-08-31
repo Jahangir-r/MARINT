@@ -49,6 +49,15 @@ const THEMED_PAINT: [string, string, keyof (typeof MAP_COLORS)["dark"]][] = [
   ["city-points", "circle-color", "cityDot"],
   ["city-labels", "text-color", "cityText"],
   ["city-labels", "text-halo-color", "labelHalo"],
+  ["city-points-az-1", "circle-color", "cityDot"],
+  ["city-labels-az-1", "text-color", "cityText"],
+  ["city-labels-az-1", "text-halo-color", "labelHalo"],
+  ["city-points-az-2", "circle-color", "cityDot"],
+  ["city-labels-az-2", "text-color", "cityText"],
+  ["city-labels-az-2", "text-halo-color", "labelHalo"],
+  ["city-points-az-3", "circle-color", "cityDot"],
+  ["city-labels-az-3", "text-color", "cityText"],
+  ["city-labels-az-3", "text-halo-color", "labelHalo"],
   ["port-points", "circle-color", "portDot"],
   ["port-points", "circle-stroke-color", "portStroke"],
   ["port-labels", "text-color", "portText"],
@@ -202,6 +211,14 @@ export function buildBaseStyle(theme: Theme = "dark"): StyleSpecification {
         },
         paint: { "text-color": "#e0824c", "text-halo-color": c.restrictedHalo, "text-halo-width": 1.2, "text-opacity": 0.75 },
       },
+      // Non-Azerbaijan cities (Kazakhstan/Turkmenistan/Iran/Russia/Armenia) keep
+      // their original, unmodified population-threshold behavior — this pass
+      // only changes how Azerbaijani settlements are selected and revealed.
+      // Azerbaijani features are explicitly excluded here (rather than relying
+      // on them simply failing the population check) because most of the
+      // expanded 79-city Azerbaijan dataset intentionally has no fabricated
+      // population figure (null), which these numeric comparisons can't
+      // evaluate against.
       {
         id: "city-points",
         type: "circle",
@@ -212,6 +229,7 @@ export function buildBaseStyle(theme: Theme = "dark"): StyleSpecification {
         // here to avoid rendering the same name twice at the same spot.
         filter: [
           "all",
+          ["!=", ["get", "iso_a3"], "AZE"],
           [">=", ["get", "population"], 40000],
           ["!", ["in", ["get", "name"], ["literal", ["Baku", "Astrakhan", "Atyrau", "Makhachkala", "Türkmenbaşy"]]]],
         ],
@@ -221,15 +239,95 @@ export function buildBaseStyle(theme: Theme = "dark"): StyleSpecification {
         id: "city-labels",
         type: "symbol",
         source: "caspian-cities",
-        // Ports and coastal cities frequently share a real-world name (Baku,
-        // Astrakhan, Atyrau, Makhachkala, Turkmenbashi) — the port layer
-        // already marks and labels those, so the city layer excludes them
-        // here to avoid rendering the same name twice at the same spot.
         filter: [
           "all",
+          ["!=", ["get", "iso_a3"], "AZE"],
           [">=", ["get", "population"], 40000],
           ["!", ["in", ["get", "name"], ["literal", ["Baku", "Astrakhan", "Atyrau", "Makhachkala", "Türkmenbaşy"]]]],
         ],
+        layout: {
+          "text-field": ["get", "name"],
+          "text-size": 11,
+          "text-font": ["Noto Sans Regular"],
+          "text-offset": [0, 1.1],
+          "text-anchor": "top",
+        },
+        paint: { "text-color": c.cityText, "text-halo-color": c.labelHalo, "text-halo-width": 1.2 },
+      },
+      // Azerbaijan settlement label hierarchy — the authoritative 79-city
+      // dataset is intentionally NOT all rendered at once (that would bury
+      // the map in labels); instead each city carries a label_rank (1 = major/
+      // national, 2 = regional/district center, 3 = smaller official city),
+      // and each rank gets its own point+label layer pair gated by a
+      // layer-level `minzoom`. A real per-layer minzoom (not a paint-level
+      // opacity trick) is used deliberately: it removes the symbols from
+      // MapLibre's collision index entirely below their reveal zoom, rather
+      // than leaving them present-but-invisible and still competing for
+      // collision space against symbols that *are* visible. Zoom thresholds
+      // are anchored to camera values already meaningful elsewhere in this
+      // app: 6.5/8.5 are the exact zoom levels MapView.tsx flies to when
+      // focusing a single/clustered vessel (see flyTo calls), i.e. "regional"
+      // and "local" already have a concrete meaning in MARINT's own camera
+      // language, not an arbitrary new number. Baku is excluded by name for
+      // the same reason as above (already labeled by the ports layer).
+      {
+        id: "city-points-az-1",
+        type: "circle",
+        source: "caspian-cities",
+        filter: ["all", ["==", ["get", "iso_a3"], "AZE"], ["==", ["get", "label_rank"], 1], ["!=", ["get", "name"], "Baku"]],
+        paint: { "circle-radius": 2, "circle-color": c.cityDot },
+      },
+      {
+        id: "city-labels-az-1",
+        type: "symbol",
+        source: "caspian-cities",
+        filter: ["all", ["==", ["get", "iso_a3"], "AZE"], ["==", ["get", "label_rank"], 1], ["!=", ["get", "name"], "Baku"]],
+        layout: {
+          "text-field": ["get", "name"],
+          "text-size": 11,
+          "text-font": ["Noto Sans Regular"],
+          "text-offset": [0, 1.1],
+          "text-anchor": "top",
+        },
+        paint: { "text-color": c.cityText, "text-halo-color": c.labelHalo, "text-halo-width": 1.2 },
+      },
+      {
+        id: "city-points-az-2",
+        type: "circle",
+        source: "caspian-cities",
+        minzoom: 6.5,
+        filter: ["all", ["==", ["get", "iso_a3"], "AZE"], ["==", ["get", "label_rank"], 2]],
+        paint: { "circle-radius": 2, "circle-color": c.cityDot },
+      },
+      {
+        id: "city-labels-az-2",
+        type: "symbol",
+        source: "caspian-cities",
+        minzoom: 6.5,
+        filter: ["all", ["==", ["get", "iso_a3"], "AZE"], ["==", ["get", "label_rank"], 2]],
+        layout: {
+          "text-field": ["get", "name"],
+          "text-size": 11,
+          "text-font": ["Noto Sans Regular"],
+          "text-offset": [0, 1.1],
+          "text-anchor": "top",
+        },
+        paint: { "text-color": c.cityText, "text-halo-color": c.labelHalo, "text-halo-width": 1.2 },
+      },
+      {
+        id: "city-points-az-3",
+        type: "circle",
+        source: "caspian-cities",
+        minzoom: 8,
+        filter: ["all", ["==", ["get", "iso_a3"], "AZE"], ["==", ["get", "label_rank"], 3]],
+        paint: { "circle-radius": 2, "circle-color": c.cityDot },
+      },
+      {
+        id: "city-labels-az-3",
+        type: "symbol",
+        source: "caspian-cities",
+        minzoom: 8,
+        filter: ["all", ["==", ["get", "iso_a3"], "AZE"], ["==", ["get", "label_rank"], 3]],
         layout: {
           "text-field": ["get", "name"],
           "text-size": 11,
