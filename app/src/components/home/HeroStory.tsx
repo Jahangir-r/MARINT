@@ -101,7 +101,7 @@ export default function HeroStory() {
             MARINT transforms fragmented maritime information — AIS, satellite, radar, history — into one
             unified picture, revealing activity that individual systems may miss.
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full max-w-xs sm:max-w-none px-6 sm:px-0">
+          <div className="mt-10 flex flex-col lg:flex-row items-stretch lg:items-center gap-3 lg:gap-4 w-full max-w-xs lg:w-auto lg:max-w-none px-6 lg:px-0">
             <Link
               to="/operations"
               onClick={(e) => {
